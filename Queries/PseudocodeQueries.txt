@@ -1,0 +1,72 @@
+--02.03.2021
+-- Queries for Team Project:
+-- Subject to change.
+
+--Password for a given ID:
+SELECT password 
+FROM person
+where person_id = $inputID;
+
+
+--Info at top left side of screen.
+SELECT first_name, last_name, person_id, class_year, class_name
+FROM Person, Student, Class
+where Class.class_id = student.class_id
+AND Person.person_id = Student.person_id
+AND Person.person_id = $inputID;
+
+
+--Subject grades for a given person id. 
+--Gives name, grade and comments.
+SELECT subject_name, grade, comments
+FROM Student, Class, Subject_Grade, Subject
+where Class.class_id = student.class_id
+AND Subject_Grade.student_id = Student.person_id
+AND Subject_Grade.subject_id = Subject.subject_id
+AND Subject_Grade.current_year = Subject_Grade.current_year
+AND Student.person_id = $inputID
+ORDER BY subject_Name ASC;
+
+
+--Assessment grades for a given person id. 
+--Gives name, type, class, date assigned, due date, date extension, grade and comments.
+SELECT assessment_name, type, class_name, date_assigned, due_date, date_exntesion, grade, Assessment_Grade.comments
+FROM Student, Class, Assessment_Grade, Subject
+where Class.class_id = student.class_id
+AND Assessment_Grade.student_id = Student.person_id
+AND Assessment_Grade.assessment_id = Assessment.assessment_id
+AND Student.person_id = $inputID
+ORDER BY date_assigned ASC;
+
+
+--Student details page
+--ADD AN EMAIL IF IT IS ADDED TO THE DATABASE.
+--CAN'T get all subjects. We could, but we'd have to look at 
+--every single lesson they've ever been in for that info.
+--And we'll have to figure something out so we get
+--the guardian's phone number, not the students
+--Because they're both in the person table...
+--And I'm not sure how we can differentiate the two.
+SELECT first_name, last_name, date_of_birth, Address, Phone number
+FROM Student, Person;
+
+
+
+
+
+
+
+--Credit page
+
+--Classes page for teacher
+
+--All Students page
+
+--Student Grades for teacher
+--That teacher's specific classes.
+
+--Classrooms
+
+--Teacher list
+
+--Other queries
