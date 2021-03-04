@@ -9,9 +9,9 @@ CREATE TABLE Student(
 	Guardian_ID int NOT NULL,
 	Guardian_Relationship varchar(30) NOT NULL,
 	
-	FOREIGN KEY (Person_ID) references Person(Person_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+	--FOREIGN KEY (Person_ID) references Person(Person_ID) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (Class_ID) references Class(Class_ID) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (Guardian_ID) references Person(Person_ID) ON DELETE CASCADE ON UPDATE CASCADE
+	--FOREIGN KEY (Guardian_ID) references Person(Person_ID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -21,9 +21,9 @@ CREATE TABLE Subject_Grade(
 	CurrentYear int NOT NULL,
 	Grade int NOT NULL,
 	Feedback varchar(100),
-	Graded BOOL NOT NULL,
+	Graded TINYINT NOT NULL,
 	
-	PRIMARY KEY (Subject_ID, Student_ID, CurrentYear_ID),
+	PRIMARY KEY (Subject_ID, Student_ID, CurrentYear),
 
 	FOREIGN KEY (Student_ID) references Student(Person_ID) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (Subject_ID) references Subject(Subject_ID) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -75,7 +75,7 @@ CREATE TABLE Assessment_Grade(
 	Assessment_ID int NOT NULL,
 	Grade int NOT NULL,
 	Feedback varchar(100),
-	Graded BOOL NOT NULL,
+	Graded TINYINT NOT NULL,
 	
 	PRIMARY KEY (Student_ID, Assessment_ID),
 
