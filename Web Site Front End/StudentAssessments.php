@@ -59,16 +59,22 @@
         table.paleBlueRows tfoot td {
             font-size: 14px;
         }
+        .buttonLogOut {
+            background-color: lightblue;
+            padding: 3px 8px;
+            margin-right: 100%;
+        }
     </style>
 </head>
 <body>
 <div class="header">
 
-    <h1>Assessments<a href="StudentHomePage.html"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>Assessments<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
     <p class="PersonDetails">Person_Name</p>
     <p class="PersonDetails">Year 9</p>
     <p class="PersonDetails">Class 9f</p>
+    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
 
 </div>
 <table class="paleBlueRows">
