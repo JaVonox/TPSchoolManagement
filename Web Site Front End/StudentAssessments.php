@@ -48,16 +48,8 @@
         table.paleBlueRows thead th:first-child {
             border-left: none;
         }
-
-        table.paleBlueRows tfoot {
-            font-size: 14px;
-            font-weight: bold;
-            color: #333333;
-            background: #D0E4F5;
-            border-top: 3px solid #444444;
-        }
-        table.paleBlueRows tfoot td {
-            font-size: 14px;
+        table.paleBlueRows td {
+            width: 325px;
         }
         .buttonLogOut {
             background-color: lightblue;

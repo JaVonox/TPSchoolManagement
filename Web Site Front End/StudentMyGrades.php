@@ -16,6 +16,9 @@
             text-align: left;
             font-size: 12px;
         }
+        table.paleBlueRows td {
+            width: 325px;
+        }
         table.paleBlueRows {
             font-family: "Times New Roman", Times, serif;
             border: 1px solid #FFFFFF;

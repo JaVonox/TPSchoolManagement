@@ -38,21 +38,23 @@
 <body>
 <div class="header">
 
-    <h1>Student Home Page<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>Teacher Home Page<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
     <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Year 9</p>
-    <p class="PersonDetails">Class 9f</p>
+    <p class="PersonDetails">Head of English</p>
+    <p class="PersonDetails">Teacher</p>
     <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
 
 </div>
 
 <div class="buttonCenter">
 
-    <a href="StudentMyGrades.php" class="button">My Grades</a>
-    <a href="StudentMyDetails.php" class="button">My Details</a>
-    <a href="StudentAssessments.php" class="button">Assessments</a>
-    <a href="StudentCreditBalance.php" class="button">Credit Balance</a>
+    <a href="MyClasses.php" class="button">My Classes</a>
+    <a href="TeacherMyDetails.php" class="button">My Details</a>
+    <a href="StudentList.php" class="button">Student List</a>
+    <a href="TeacherCreditBalance.php" class="button">Credit Balance</a>
+    <a href="TeacherEditGrades.php" class="button">Student Grades</a>
+    <a href="TeacherClassroom.php" class="button">Classroom</a>
 
 </div>
 
