@@ -25,7 +25,7 @@
   <br>
   <div>Password: <input type = "text" placeholder="Password"> </div>
   <br>
-  <a href="passwordreset.html"><button class ="button" >Forgotten Password</button></a>   <!-- buttons nested between anchor tag, which is a hyperlink-->
+  <a href="passwordreset.php"><button class ="button" >Forgotten Password</button></a>   <!-- buttons nested between anchor tag, which is a hyperlink-->
   <button class ="button">Login</button>
 </div>
 </body>
