@@ -158,3 +158,10 @@ create table Staff
   foreign key(Person_ID) references Person(Person_ID),
   foreign key(Department_ID) references Department(Department_ID)
   );
+					   
+					   
+CREATE TABLE Login(
+Person_ID int PRIMARY KEY,
+Password varchar(30) NOT NULL,
+FOREIGN KEY (Person_ID) references Person(Person_ID) ON DELETE CASCADE ON UPDATE CASCADE
+);				   
