@@ -49,7 +49,7 @@
 <body>
 <div class="header">
 
-    <h1>Student Home Page<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>Credit Balance<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
     <p class="PersonDetails">Person_Name</p>
     <p class="PersonDetails">Year 9</p>
