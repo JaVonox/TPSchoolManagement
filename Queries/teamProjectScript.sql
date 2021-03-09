@@ -41,7 +41,7 @@ create table Staff
   Department_ID int, -- This might have to be removed
   primary key(Person_ID),
   foreign key(Person_ID) references Person(Person_ID)
-  -- foreign key(Department_ID) references Department(Department_ID))
+  foreign key(Department_ID) references Department(Department_ID))
   );
   
 -- Anything with varchar(100) may need its own table.
