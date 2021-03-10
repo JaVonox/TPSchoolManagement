@@ -91,11 +91,11 @@ body
 <div id ="dropdown">
     <a href='#nav'><div class="dropdownClass">Class 1</div></a>
     <div class="expand grid-item"  id="nav">
-      <div class="dropdownElement">Student 1</div>                                          <!--anchor tags will need to be populated with SQL script that takes teacher to specific student -->
+      <div class="dropdownElement">Student 1</div>                                          <!--anchor tags will need to be populated with SQL script that takes teacher to specific student details -->
       <div class="dropdownElementEdit"><a href="StudentList.php">View</a></div>        <!-- each div needs to be populated with the database data -->
       <div class="dropdownElement">Student 2</div>                                                 <!-- you will probably need to create a loop to dynamically add the data -->
       <div class="dropdownElementEdit">View</div>
-      <div class="dropdownElement">Student 3</div>                                                 <!-- student divs will need to be replace with their corresponding grade page -->
+      <div class="dropdownElement">Student 3</div>                                                 <!-- student divs will need to be replace with their corresponding details -->
       <div class="dropdownElementEdit">View</div>                                            <!-- for each specific student -->
     </div>
     <a href='#nav2'><div class="dropdownClass">Class 2</div></a>
