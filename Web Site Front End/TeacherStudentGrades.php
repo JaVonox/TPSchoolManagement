@@ -31,20 +31,21 @@ body
         {
             border: 1px solid blue;
             background: #4472C4;
-            width: 200px;
+            width: 70%;
             color: white;
         }
 .dropdownElement
         {
             background: #4472C4;
-            width: 200px;
+            width: 1150px;
             color: white;
         }
 .dropdownElementEdit
         {
             background: #ED7D31;
-            width: 120px;
+            width: 200px;
             color: white;
+            text-align: center;
         }
 
 .expand {
