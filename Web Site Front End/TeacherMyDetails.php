@@ -1,117 +1,77 @@
-<!DOCTYPE HTML>
-
+<!DOCTYPE html>
+<html lang="English">
 <head>
-<style>
-  .buttonLogOut
-        {
-            background-color: lightblue;
-            padding: 3px 8px;
-            margin-right: 100%;
-        }
-.PersonDetails
-        {
-            text-align: left;
-            font-size: 12px;
-        }
-body
-        {
-            margin: 0;
-        }
-.sizeof
-        {
-            font-size: 150%;
-        }
-.header
-        {
+    <style>
+        .header {
             background-color: #4472C4;
             padding: 20px;
             text-align: center;
         }
-.dropdownClass
-        {
-            border: 1px solid blue;
-            background: #4472C4;
-            width: 200px;
-            color: white;
-        }
-.dropdownElement
-        {
-            background: #4472C4;
-            width: 200px;
-            color: white;
-        }
-.dropdownElementEdit
-        {
-            background: #ED7D31;
-            width: 75px;
-            color: white;
+
+        body {
+            margin: 0;
         }
 
-.expand {
-            background: #fff;
-            overflow: auto;
-            transition: all .5s ease-in-out;  /*trasnition works by ease-in-out, changing the line height*/
-            line-height: 0;                   /*from 0 to 1.5*/
-
-            padding: 0 1em;
-            color: transparent;
+        .PersonDetails {
+            text-align: left;
+            font-size: 12px;
         }
-
-.expand:target
-        {
-            line-height: 1.5;
-            color: black;
+        .buttonLogOut {
+            background-color: lightblue;
+            padding: 3px 8px;
+            margin-right: 100%;
         }
-.grid-item
-        {
-            display: inline-grid;
-            grid-template-columns: auto auto;
-
+        .Details {
+            font-weight: bold;
+            font-size: 30px;
+            margin: 20px;
         }
-
-</style>
+        .LinesUnderText {
+            height:50px;
+            border-bottom: 1px solid cornflowerblue;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
-
 <body>
+<div class="header">
 
-  <div class="header">
-
-    <h1>My Classes<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>My Grades<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
     <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Head of English Department</p>
-    <p class="PersonDetails">Teacher</p>
+    <p class="PersonDetails">Year 9</p>
+    <p class="PersonDetails">Class 9f</p>
     <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
-  </div>
-
-<br>
-
-<div class = sizeof>
-
-<div id ="dropdown">
-    <a href='#nav'><div class="dropdownClass">Class 1</div></a>
-    <div class="expand grid-item"  id="nav">
-      <div class="dropdownElement">Student 1</div>                                          <!--anchor tags will need to be populated with SQL script that takes teacher to specific student details -->
-      <div class="dropdownElementEdit"><a href="StudentList.php">View</a></div>        <!-- each div needs to be populated with the database data -->
-      <div class="dropdownElement">Student 2</div>                                                 <!-- you will probably need to create a loop to dynamically add the data -->
-      <div class="dropdownElementEdit">View</div>
-      <div class="dropdownElement">Student 3</div>                                                 <!-- student divs will need to be replace with their corresponding details -->
-      <div class="dropdownElementEdit">View</div>                                            <!-- for each specific student -->
-    </div>
-    <a href='#nav2'><div class="dropdownClass">Class 2</div></a>
-    <div class="expand grid-item"  id="nav2">
-      <div class="dropdownElement">Student 1</div>
-      <div class="dropdownElementEdit">View</div>
-      <div class="dropdownElement">Student 2</div>
-      <div class="dropdownElementEdit">View</div>
-    </div>
-    <a href='#nav3'><div class="dropdownClass">Class 3</div></a>
-    <div class="expand grid-item"  id="nav3">
-      <div class="dropdownElement">Student 1</div>
-      <div class="dropdownElementEdit">View</div>
-    </div>
-</div>
 
 </div>
-
+<div class="Details">
+    <img style="float: right" src=Picture1.jpg>
+    <!---Used php so that its easier for you to add database entries.--->
+    <?php   $FullName = "Rick Astley";
+            $DateOfBirth = "6/9/1969";
+            $Email = "RickAstley@GetRickRolled.co.uk";
+            $ParentGuardianEmail = "NeverGonna@GiveYouUp.co.uk";
+            $ParentGuardianPhoneNumber = "074206942069";
+            $StudentSubjects = "Music"
+    ?>
+    <span class ="LinesUnderText">
+        Full Name: <?php echo "<label style='font-weight: normal'>".$FullName."</label>"?>
+    <br>
+    <br>
+        Date Of Birth: <?php echo "<label style='font-weight: normal'>".$DateOfBirth."</label>"?>
+    <br>
+    <br>
+        Email: <?php echo "<label style='font-weight: normal'>".$Email."</label>"?>
+    <br>
+    <br>
+        Parent/Guardian Email: <?php echo "<label style='font-weight: normal'>".$ParentGuardianEmail."</label>"?>
+    <br>
+    <br>
+        Parent/Guardian Phone Number: <?php echo "<label style='font-weight: normal'>".$ParentGuardianPhoneNumber."</label>"?>
+    <br>
+    <br>
+        Student Subjects: <?php echo "<label style='font-weight: normal'>".$StudentSubjects."</label>"?>
+    </span>
+</div>
 </body>
+</html>
