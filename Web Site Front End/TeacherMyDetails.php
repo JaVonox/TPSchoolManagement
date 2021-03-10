@@ -36,7 +36,7 @@
 <body>
 <div class="header">
 
-    <h1>My Grades<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>My Details<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
     <p class="PersonDetails">Person_Name</p>
     <p class="PersonDetails">Year 9</p>
@@ -49,7 +49,6 @@
     <!---Used php so that its easier for you to add database entries.--->
     <?php   $FullName = "Rick Astley";
             $DateOfBirth = "6/9/1969";
-            $Email = "RickAstley@GetRickRolled.co.uk";
             $ParentGuardianEmail = "NeverGonna@GiveYouUp.co.uk";
             $ParentGuardianPhoneNumber = "074206942069";
             $StudentSubjects = "Music"
@@ -59,12 +58,6 @@
     <br>
     <br>
         Date Of Birth: <?php echo "<label style='font-weight: normal'>".$DateOfBirth."</label>"?>
-    <br>
-    <br>
-        Email: <?php echo "<label style='font-weight: normal'>".$Email."</label>"?>
-    <br>
-    <br>
-        Parent/Guardian Email: <?php echo "<label style='font-weight: normal'>".$ParentGuardianEmail."</label>"?>
     <br>
     <br>
         Parent/Guardian Phone Number: <?php echo "<label style='font-weight: normal'>".$ParentGuardianPhoneNumber."</label>"?>

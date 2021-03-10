@@ -36,7 +36,7 @@
 <body>
 <div class="header">
 
-    <h1>My Details<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>My Details<a href="StaffHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
     <p class="PersonDetails">Person_Name</p>
     <p class="PersonDetails">Year 9</p>
@@ -46,7 +46,7 @@
 </div>
 <div class="Details">
     <img style="float: right" src=Picture1.jpg>
-    <!---Used php so that its easier for you to add database entries. Just change values to Database values--->
+    <!---Used php so that its easier for you to add database entries.--->
     <?php   $FullName = "Rick Astley";
             $DateOfBirth = "6/9/1969";
             $ParentGuardianEmail = "NeverGonna@GiveYouUp.co.uk";

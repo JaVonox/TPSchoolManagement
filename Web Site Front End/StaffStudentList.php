@@ -52,7 +52,7 @@
 <body>
 <div class="header">
 
-    <h1>Student List<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>Student List<a href="StaffHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
     <p class="PersonDetails">Person_Name</p>
     <p class="PersonDetails">Head of English</p>

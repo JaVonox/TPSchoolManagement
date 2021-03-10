@@ -42,7 +42,7 @@
         }
 
         table.Rows td {
-            width: 400px;
+            width: 325px;
         }
         table tr.header, table tr:hover {
             background-color: #f1f1f1;
@@ -52,7 +52,7 @@
 <body>
 <div class="header">
 
-    <h1>Student List<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>Teacher List<a href="StaffHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
     <p class="PersonDetails">Person_Name</p>
     <p class="PersonDetails">Head of English</p>
@@ -65,10 +65,11 @@
     <thead>
 
     <tr>
-        <th class="tableheading">Student ID</th>
+        <th class="tableheading">Teacher ID</th>
         <th class="tableheading">Full Name</th>
-        <th class="tableheading">Year</th>
-        <th class="tableheading">Optional Subjects</th>
+        <th class="tableheading">Classes</th>
+        <th class="tableheading">Subjects</th>
+        <th class="tableheading">Salary</th>
         <th><div class="InputBox">
                 <input id="myInput" onkeyup="SearchFunction()" placeholder="Search for names.." style=" padding: 8px" type = "text">
                 <button class ="button">Search</button>
@@ -86,13 +87,15 @@
     {
         $DataBaseData = $DataBaseData + 1;
         echo "<tr>";
-        //Student ID
+        //Teacher ID
         echo "<td>".$DataBaseData."</td>";
         //Full Name
         echo "<td>".$DataBaseData."</td>";
-        //Year
+        //Classes
         echo "<td>".$DataBaseData."</td>";
-        //Optional Subjects
+        //Subjects
+        echo "<td>".$DataBaseData."</td>";
+        //Salary
         echo "<td>".$DataBaseData."</td>";
 
         echo "</tr>";

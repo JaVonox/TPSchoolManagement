@@ -26,7 +26,7 @@
             font-size: 12px;
         }
         .buttonCenter {
-            margin:0 auto;
+
         }
         .buttonLogOut {
             background-color: lightblue;
@@ -38,23 +38,24 @@
 <body>
 <div class="header">
 
-    <h1>Teacher Home Page<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>Staff Home Page<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
     <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Head of English</p>
-    <p class="PersonDetails">Teacher</p>
+    <p class="PersonDetails">IT Admin</p>
+    <p class="PersonDetails">Admin</p>
     <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
 
 </div>
 
 <div class="buttonCenter">
 
-    <a href="TeacherMyClasses.php" class="button">My Classes</a>
-    <a href="TeacherMyDetails.php" class="button">My Details</a>
-    <a href="StudentList.php" class="button">Student List</a>
-    <a href="TeacherCreditBalance.php" class="button">Credit Balance</a>
-    <a href="TeacherStudentGrades.php" class="button">Student Grades</a>
-    <a href="TeacherClassroom.php" class="button">Classroom</a>
+    <a href="StaffMyClasses.php" style="padding: 40px 66px" class="button">Classes</a>
+    <a href="StaffMyDetails.php" class="button">My Details</a>
+    <a href="StaffStudentList.php" class="button">Student List</a>
+    <a href="StaffCreditBalance.php" class="button">Credit Balance</a>
+    <a href="StaffStudentGrades.php" class="button">Student Grades</a>
+    <a href="TeacherList.php" class="button">Teacher List</a>
+    <a href="Classrooms.php" class="button">Classroom</a>
 
 </div>
 

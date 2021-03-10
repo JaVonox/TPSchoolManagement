@@ -85,8 +85,6 @@
     <tr>
         <th class="tableheading">Subject</th>
         <th class="tableheading">Grade</th>
-        <th class="tableheading">Date Assigned</th>
-        <th class="tableheading">Teacher</th>
         <th class="tableheading">Comments</th>
     </tr>
     </thead>
@@ -102,10 +100,6 @@
             //Subject
             echo "<td>".$DataBaseData."</td>";
             //Grade
-            echo "<td>".$DataBaseData."</td>";
-            //Date Assigned
-            echo "<td>".$DataBaseData."</td>";
-            //Teacher
             echo "<td>".$DataBaseData."</td>";
             //Comments
             echo "<td>".$DataBaseData."</td>";
