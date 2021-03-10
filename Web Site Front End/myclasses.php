@@ -79,8 +79,8 @@ body
     <h1>My Classes<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
     <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Year 9</p>
-    <p class="PersonDetails">Class 9f</p>
+    <p class="PersonDetails">Head of English Department</p>
+    <p class="PersonDetails">Teacher</p>
     <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
   </div>
 
