@@ -1,9 +1,7 @@
 <?php
-
 $dbserver = "localhost";
-$dbusername = "username";
-$dbpassword = "password";
-$dbdatabase = "SchoolSystem";
-
+$dbusername = "root";
+$dbpassword = "";
+$dbdatabase = "teamproject";
 ?>
 
