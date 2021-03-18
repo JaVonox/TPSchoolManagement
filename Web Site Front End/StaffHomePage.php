@@ -40,11 +40,7 @@
 
     <h1>Staff Home Page<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">IT Admin</p>
-    <p class="PersonDetails">Admin</p>
-    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
-
+<?php include "PageElements/LoggedInBox.php"?>
 </div>
 
 <div class="buttonCenter">
