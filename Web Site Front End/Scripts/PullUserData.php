@@ -7,7 +7,7 @@ class UserInteractionHandler
 	
 	function __Construct()
 	{
-		include_once "dbinfo.php"; //pull database info
+		require "dbinfo.php"; //pull database info
 		
 		$conn = new mysqli($dbserver, $dbusername, $dbpassword, $dbdatabase);
 		if($conn->connect_error) 
@@ -29,6 +29,26 @@ class UserInteractionHandler
 		$info['Role'] = $dataSet['Role'];
 		$info['UserGroup'] = $type;
 		return $info;
+	}
+	
+	function PullPersonDetails($user,$type) //For the "My Details" pages
+	{
+		$info = array("Name"=>"","Date Of Birth "=>"","Phone Number"=>"","Role"=>"");
+		
+		$result = $this->connectionData->query("SELECT person.First_Name,person.Last_Name,person.Role,person.Date_Of_birth,person.Phone_Number FROM person WHERE Person_ID = ". $user . ";");
+		$dataSet = $result->fetch_assoc();
+		$info['Name'] = $dataSet['First_Name'] . " " . $dataSet['Last_Name'];
+		$info['Date_Of_birth'] = $dataSet['Date_Of_birth'];
+		$info['Role'] = $dataSet['Role'];
+		$info['Phone_Number'] = $dataSet['Phone_Number'];
+		return $info;
+	}
+	
+	function PullStudentsArray()
+	{
+		$result = $this->connectionData->query("SELECT person.Person_ID,person.First_Name,person.Last_Name,Class.Class_Year FROM person,class,student WHERE person.Person_ID = student.Person_ID AND student.Class_ID = class.Class_ID");
+		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
+		return $dataSet;
 	}
 }
 ?>

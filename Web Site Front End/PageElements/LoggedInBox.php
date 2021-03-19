@@ -1,9 +1,8 @@
 <?php include_once "Scripts/PullUserData.php";?>
 <?php
-session_start();
-$database = new UserInteractionHandler();
+$interHandler = new UserInteractionHandler();
 
-$userStats = $database->PullLoggedinBar($_SESSION['Login'],$_SESSION['Type']);
+$userStats = $interHandler->PullLoggedinBar($_SESSION['Login'],$_SESSION['Type']);
 ?>
 <div style="background-color:white;width:max-content;">
 <p class="PersonDetails"><?php echo $userStats['Name']?></p>

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php include "Scripts/PageAccessVerify.php";
+PageCheck(array("Staff","Teacher"));
+?>
 <html lang="English">
 <head>
     <style>
@@ -77,22 +80,27 @@
     <tbody>
     <?php
     $DataBaseData = 0;
+
+	$dataGetter = new UserInteractionHandler();
+	$studentsArray = $dataGetter->PullStudentsArray();
+
     //Changing count number (10) changes the amount of rows. So table is dynamic to the number of records in the
     //database
-    while ($DataBaseData < 10)
+	$i = 0;
+    while ($i < count($studentsArray))
     {
-        $DataBaseData = $DataBaseData + 1;
         echo "<tr>";
         //Student ID
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$studentsArray[$i]['Person_ID']."</td>";
         //Full Name
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$studentsArray[$i]['First_Name']." ". $studentsArray[$i]['Last_Name'] ."</td>";
         //Year
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$studentsArray[$i]['Class_Year']."</td>";
         //Optional Subjects
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>TBA</td>";
 
         echo "</tr>";
+		$i++;
     }
     echo "</tbody>";
     echo "</table>";
