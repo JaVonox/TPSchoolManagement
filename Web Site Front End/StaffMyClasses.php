@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-
+<?php include "Scripts/PageAccessVerify.php";
+PageCheck(array("Staff"));
+?>
 <head>
 <style>
   .buttonLogOut
