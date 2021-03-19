@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php include "Scripts/PageAccessVerify.php";
+PageCheck(array("Staff"));
+?>
 <html>
 <head>
     <style>
