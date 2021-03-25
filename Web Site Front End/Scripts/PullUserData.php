@@ -44,6 +44,25 @@ class UserInteractionHandler
 		return $info;
 	}
 	
+	function PullAllClassesTeacher($teacherID) //Gets all the class info from lesson which involve a specific teacher
+	{
+		$classes = array();
+		
+		$result = $this->connectionData->query("SELECT DISTINCT Class_ID FROM lesson WHERE Staff_Person_ID = " . $teacherID);
+		$classIDArray = $result->fetch_all(MYSQLI_NUM);
+		
+		for($i=0;$i<count($classIDArray);$i++)
+		{
+			$result = $this->connectionData->query("SELECT student.Class_ID,student.Person_ID,person.First_Name,person.Last_Name FROM student RIGHT JOIN person ON student.Person_ID = person.Person_ID WHERE student.Class_ID = " . $classIDArray[$i][0]);
+			$classInfo = $result->fetch_all(MYSQLI_ASSOC);
+		
+			$classes[$i] = $classInfo;
+		}
+		
+		
+		return $classes;
+	}
+	
 	function PullStudentsArray()
 	{
 		$result = $this->connectionData->query("SELECT person.Person_ID,person.First_Name,person.Last_Name,Class.Class_Year FROM person,class,student WHERE person.Person_ID = student.Person_ID AND student.Class_ID = class.Class_ID");
