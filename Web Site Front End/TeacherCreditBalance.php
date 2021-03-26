@@ -58,8 +58,16 @@ PageCheck(array("Teacher"));
 
 </div>
 <div class="CreditTotal">
-    <?php $CreditTotal = 50;?>
-    <?php echo "<h1>£".$CreditTotal."</h1>"?>
+<?php 
+	
+	$id = $_SESSION['Login'];
+	$fetcher = new UserInteractionHandler();
+	$balance = $fetcher->PullBalance($id);
+	echo "<h1>£".$balance[0]['Balance']."</h1>";
+	echo "<h2>Last Top Up: ".$balance[0]['Last_Top_Up']."</h2>";
+	$transactions = $fetcher->PullTransactions($id);
+	
+?>
 
 </div>
 
@@ -71,23 +79,19 @@ PageCheck(array("Teacher"));
 
 <div class="Transactions">
 
-        <?php
-        //Basically just need to change the array to equal the database values and it "should" work.
-        $Transactions = array("Bacon Roll", "Katsu Chicken", "Pasta");
-        $price = array(5, 1.40, 4.89);
-
-        for ($i = 0; $i <=2; $i ++)
+<?php
+  
+        for ($i = 0; $i <count($transactions); $i++)
         {
             echo "<span class='LinesUnderText'>";
-            echo "<label style='font-size: 25px; '>".$Transactions[$i]."</label>";
-            echo "<label style='float:right; margin-right: 60%; font-size: 25px'>£".$price[$i]."</label></span>";
+            echo "<label style='font-size: 25px; '>".$transactions[$i]['Date_Of_Transaction']."</label>";
+            echo "<label style='float:right; margin-right: 60%; font-size: 25px'>£".$transactions[$i]['Transaction_Value']."</label></span>";
             echo "<br>";
             echo "<br>";
             echo "</span>";
         }
 
-        ?>
+?>
 </div>
-
 </body>
 </html>

@@ -47,7 +47,7 @@
 			$result = $statement->fetch(PDO::FETCH_ASSOC);
 			
 			
-			if ($our_Password == $result["Password"]) 
+			if (hash('sha256',$our_Password, false) == $result["Password"]) 
 			{
 				$_SESSION['Login'] = $our_ID;
 			   

@@ -66,11 +66,11 @@ PageCheck(array("Teacher","Staff"));
 
     <tr>
         <th class="tableheading">Classroom</th>
-        <th class="tableheading">Classes</th>
+        <!-- <th class="tableheading">Classes</th>-->
         <th class="tableheading">Capacity</th>
         <th class="tableheading">Location</th>
         <th><div class="InputBox">
-                <input id="myInput" onkeyup="SearchFunction()" placeholder="Search for names.." style=" padding: 8px" type = "text">
+                <input id="myInput" onkeyup="SearchFunction()" placeholder="Search for Classrooms.." style=" padding: 8px" type = "text">
                 <button class ="button">Search</button>
             </div>
         </th>
@@ -78,24 +78,26 @@ PageCheck(array("Teacher","Staff"));
     </tr>
     </thead>
     <tbody>
-    <?php
-    $DataBaseData = 0;
-    //Changing count number (10) changes the amount of rows. So table is dynamic to the number of records in the
-    //database
-    while ($DataBaseData < 10)
+<?php
+    $i = 0;
+	$fetcher = new UserInteractionHandler();
+	$classrooms = $fetcher->pullClassroomsArray();
+    //Changing count number (10) changes the amount of rows. So table is dynamic to the number of records in the database
+	
+    while ($i < count($classrooms))
     {
-        $DataBaseData = $DataBaseData + 1;
         echo "<tr>";
         //Classroom
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$classrooms[$i]['Classroom_Name']."</td>";
         //Classes
-        echo "<td>".$DataBaseData."</td>";
+        //echo "<td>".$DataBaseData."</td>";
         //Capacity
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$classrooms[$i]['Maximum_Capacity']."</td>";
         //Location
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$classrooms[$i]['Classroom_Location']."</td>";
 
         echo "</tr>";
+		$i++;
     }
     echo "</tbody>";
     echo "</table>";
