@@ -1,0 +1,30 @@
+
+
+
+PHP DEVELOPMENT
+
+
+
+BOTH:
+
+Login (index) - 		  	NEEDS HASHING
+Forgotten Password - 		Needs completing? 
+TeacherHome/StudentHome - Jamie/Mubashar
+Student\TeacherDetails - Jamie
+Teacher/Credit Balance - Lewis
+
+
+--STAFF/TEACHER:
+StaffClasses - 			Jamie	
+StaffStudentList - 		DONE
+StaffStudentGrades - 	Mubashar
+StaffEditGrades - 		Mubashar
+Classroom - 			Lewis
+
+
+--STUDENT:
+
+StudentAssessments - Mubashar
+StudentSubjectGrades - Mubashar
+
+

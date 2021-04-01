@@ -69,5 +69,28 @@ class UserInteractionHandler
 		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
 		return $dataSet;
 	}
+	
+	function PullClassroomsArray()
+	{
+		$result = $this->connectionData->query("SELECT Classroom_Name, Classroom_Location, Maximum_Capacity FROM Classroom ORDER BY Classroom_Name;");
+		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
+		return $dataSet;
+	}
+	
+	function PullBalance($id)
+	{
+		$result = $this->connectionData->query("SELECT Balance, Last_Top_Up FROM Credit WHERE Person_ID = ".$id.";");
+		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
+		return $dataSet;
+	}
+	function PullTransactions($id)
+	{
+		$result = $this->connectionData->query("SELECT Date_Of_Transaction, Transaction_Value FROM Transactions WHERE Person_ID = ".$id." ORDER BY Date_Of_Transaction;");
+		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
+		return $dataSet;
+	}
+	
+	
+	
 }
 ?>
