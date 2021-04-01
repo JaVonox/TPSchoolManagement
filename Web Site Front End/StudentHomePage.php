@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<?php include "Scripts/PageAccessVerify.php";
-PageCheck(array("Student"));
+<?php
+    session_start();
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <style>
@@ -43,7 +43,10 @@ PageCheck(array("Student"));
 
     <h1>Student Home Page<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-	<?php include "PageElements/LoggedInBox.php"?>
+    <p class="PersonDetails"><?php echo $_SESSION['First_Name']." ". $_SESSION['Last_Name']; ?></p>
+    <p class="PersonDetails">Year <?php echo $_SESSION['StudentYear']; ?></p>
+    <p class="PersonDetails">Class <?php echo $_SESSION['Student_Class']; ?></p>
+    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
 
 </div>
 

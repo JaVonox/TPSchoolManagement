@@ -1,7 +1,5 @@
 <!DOCTYPE HTML>
-<?php include "Scripts/PageAccessVerify.php";
-PageCheck(array("Teacher"));
-?>
+
 <head>
 <style>
   .buttonLogOut
@@ -81,7 +79,10 @@ body
 
     <h1>Student Grades<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-	<?php include "PageElements/LoggedInBox.php"?>
+    <p class="PersonDetails">Person_Name</p>
+    <p class="PersonDetails">Head of English Department</p>
+    <p class="PersonDetails">Teacher</p>
+    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
   </div>
 
 <br>
