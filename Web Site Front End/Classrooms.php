@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php include "Scripts/PageAccessVerify.php";
+PageCheck(array("Teacher","Staff"));
+?>
 <html lang="English">
 <head>
     <style>
@@ -54,10 +57,7 @@
 
     <h1>Classrooms<a href="StaffHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Head of English</p>
-    <p class="PersonDetails">Teacher</p>
-    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
+	<?php include "PageElements/LoggedInBox.php"?>
 
 </div>
 
@@ -66,11 +66,11 @@
 
     <tr>
         <th class="tableheading">Classroom</th>
-        <th class="tableheading">Classes</th>
+        <!-- <th class="tableheading">Classes</th>-->
         <th class="tableheading">Capacity</th>
         <th class="tableheading">Location</th>
         <th><div class="InputBox">
-                <input id="myInput" onkeyup="SearchFunction()" placeholder="Search for names.." style=" padding: 8px" type = "text">
+                <input id="myInput" onkeyup="SearchFunction()" placeholder="Search for Classrooms.." style=" padding: 8px" type = "text">
                 <button class ="button">Search</button>
             </div>
         </th>
@@ -78,24 +78,26 @@
     </tr>
     </thead>
     <tbody>
-    <?php
-    $DataBaseData = 0;
-    //Changing count number (10) changes the amount of rows. So table is dynamic to the number of records in the
-    //database
-    while ($DataBaseData < 10)
+<?php
+    $i = 0;
+	$fetcher = new UserInteractionHandler();
+	$classrooms = $fetcher->pullClassroomsArray();
+    //Changing count number (10) changes the amount of rows. So table is dynamic to the number of records in the database
+	
+    while ($i < count($classrooms))
     {
-        $DataBaseData = $DataBaseData + 1;
         echo "<tr>";
         //Classroom
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$classrooms[$i]['Classroom_Name']."</td>";
         //Classes
-        echo "<td>".$DataBaseData."</td>";
+        //echo "<td>".$DataBaseData."</td>";
         //Capacity
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$classrooms[$i]['Maximum_Capacity']."</td>";
         //Location
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$classrooms[$i]['Classroom_Location']."</td>";
 
         echo "</tr>";
+		$i++;
     }
     echo "</tbody>";
     echo "</table>";

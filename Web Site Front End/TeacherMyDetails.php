@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php 
+include_once "Scripts/PageAccessVerify.php";
+PageCheck(array("Teacher"));
+?>
 <html lang="English">
 <head>
     <style>
@@ -38,20 +42,19 @@
 
     <h1>My Details<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Year 9</p>
-    <p class="PersonDetails">Class 9f</p>
-    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
+	<?php include "PageElements/LoggedInBox.php";?>
 
 </div>
 <div class="Details">
-    <img style="float: right" src=Picture1.jpg>
     <!---Used php so that its easier for you to add database entries.--->
-    <?php   $FullName = "Rick Astley";
-            $DateOfBirth = "6/9/1969";
-            $ParentGuardianEmail = "NeverGonna@GiveYouUp.co.uk";
-            $ParentGuardianPhoneNumber = "074206942069";
-            $StudentSubjects = "Music"
+    <?php   
+			$dataGetter = new UserInteractionHandler();
+			$teacherDetails = $dataGetter->PullPersonDetails($_SESSION['Login'],$_SESSION['Type']);
+			
+			$FullName = $teacherDetails['Name'];
+            $DateOfBirth = date("d-m-Y",strtotime($teacherDetails['Date_Of_birth']));
+            $PhoneNumber = $teacherDetails['Phone_Number'];
+            $Role = $teacherDetails['Role'];
     ?>
     <span class ="LinesUnderText">
         Full Name: <?php echo "<label style='font-weight: normal'>".$FullName."</label>"?>
@@ -60,10 +63,10 @@
         Date Of Birth: <?php echo "<label style='font-weight: normal'>".$DateOfBirth."</label>"?>
     <br>
     <br>
-        Parent/Guardian Phone Number: <?php echo "<label style='font-weight: normal'>".$ParentGuardianPhoneNumber."</label>"?>
+        Phone Number: <?php echo "<label style='font-weight: normal'>".$PhoneNumber."</label>"?>
     <br>
     <br>
-        Student Subjects: <?php echo "<label style='font-weight: normal'>".$StudentSubjects."</label>"?>
+        Title: <?php echo "<label style='font-weight: normal'>".$Role."</label>"?>
     </span>
 </div>
 </body>

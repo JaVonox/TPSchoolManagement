@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php include "Scripts/PageAccessVerify.php";
+PageCheck(array("Student"));
+?>
 <html lang="English">
 <head>
     <style>
@@ -38,20 +41,19 @@
 
     <h1>My Details<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Year 9</p>
-    <p class="PersonDetails">Class 9f</p>
-    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
+	<?php include "PageElements/LoggedInBox.php"?>
 
 </div>
 <div class="Details">
-    <img style="float: right" src=Picture1.jpg>
     <!---Used php so that its easier for you to add database entries. Just change values to Database values--->
-    <?php   $FullName = "Rick Astley";
-            $DateOfBirth = "6/9/1969";
-            $ParentGuardianEmail = "NeverGonna@GiveYouUp.co.uk";
-            $ParentGuardianPhoneNumber = "074206942069";
-            $StudentSubjects = "Music"
+	<?php   
+			$dataGetter = new UserInteractionHandler();
+			$teacherDetails = $dataGetter->PullPersonDetails($_SESSION['Login'],$_SESSION['Type']);
+			
+			$FullName = $teacherDetails['Name'];
+            $DateOfBirth = date("d-m-Y",strtotime($teacherDetails['Date_Of_birth']));
+            $ParentGuardianPhoneNumber = $teacherDetails['Phone_Number'];
+            $StudentSubjects = "??";
     ?>
     <span class ="LinesUnderText">
         Full Name: <?php echo "<label style='font-weight: normal'>".$FullName."</label>"?>
