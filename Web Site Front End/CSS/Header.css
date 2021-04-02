@@ -1,0 +1,29 @@
+.header {
+    text-align: justify;
+    padding: 1em;
+    background: #4472C4;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.header::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+
+.header h1,
+header a  {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.header h1 {
+    width: 50%;
+    text-align: right;
+    padding-top: 0.5em;
+}
+
+.header a {
+    padding-top: 1em;
+}

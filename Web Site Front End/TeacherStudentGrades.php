@@ -4,6 +4,7 @@ PageCheck(array("Teacher"));
 ?>
 <head>
 <style>
+    <?php include "CSS/Header.css"?>
   .buttonLogOut
         {
             background-color: lightblue;
@@ -23,12 +24,7 @@ body
         {
             font-size: 150%;
         }
-.header
-        {
-            background-color: #4472C4;
-            padding: 20px;
-            text-align: center;
-        }
+
 .dropdownClass
         {
             border: 1px solid blue;
@@ -79,8 +75,8 @@ body
 
   <div class="header">
 
-    <h1>Student Grades<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
-
+    <h1>Student Grades</h1>
+    <a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a>
 	<?php include "PageElements/LoggedInBox.php"?>
   </div>
 

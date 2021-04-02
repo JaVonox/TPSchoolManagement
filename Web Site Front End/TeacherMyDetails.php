@@ -6,11 +6,7 @@ PageCheck(array("Teacher"));
 <html lang="English">
 <head>
     <style>
-        .header {
-            background-color: #4472C4;
-            padding: 20px;
-            text-align: center;
-        }
+        <?php include "CSS/Header.css"?>
 
         body {
             margin: 0;
@@ -40,8 +36,8 @@ PageCheck(array("Teacher"));
 <body>
 <div class="header">
 
-    <h1>My Details<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
-
+    <h1>My Details</h1>
+    <a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a>
 	<?php include "PageElements/LoggedInBox.php";?>
 
 </div>

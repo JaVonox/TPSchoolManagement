@@ -5,16 +5,13 @@ PageCheck(array("Teacher"));
 <html lang="English">
 <head>
     <style>
+        <?php include "CSS/Header.css"?>
         .buttonLogOut {
             background-color: lightblue;
             padding: 3px 8px;
             margin-right: 100%;
         }
-        .header {
-            background-color: #4472C4;
-            padding: 20px;
-            text-align: center;
-        }
+
         body {
             margin: 0;
         }
@@ -52,8 +49,8 @@ PageCheck(array("Teacher"));
 <body>
 <div class="header">
 
-    <h1>Edit Grades<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
-
+    <h1>Edit Grades</h1>
+    <a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a>
 	<?php include "PageElements/LoggedInBox.php"?>
 
 </div>

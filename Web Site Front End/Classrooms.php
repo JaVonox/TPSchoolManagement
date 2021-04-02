@@ -2,10 +2,11 @@
 <?php include "Scripts/PageAccessVerify.php";
 PageCheck(array("Teacher","Staff"));
 ?>
+
 <html lang="English">
 <head>
     <style>
-
+        <?php include "CSS/Header.css"?>
         .buttonLogOut {
             background-color: lightblue;
             padding: 3px 8px;
@@ -18,11 +19,6 @@ PageCheck(array("Teacher","Staff"));
         body {
             margin: 0;
 
-        }
-        .header {
-            background-color: #4472C4;
-            padding: 20px;
-            text-align: center;
         }
         .button {
             background-color: #4472C4;
@@ -55,7 +51,8 @@ PageCheck(array("Teacher","Staff"));
 <body>
 <div class="header">
 
-    <h1>Classrooms<a href="StaffHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>Classrooms</h1>
+    <a href="StaffHomePage.php"><img style="float: right;" src=Picture2.png></a>
 
 	<?php include "PageElements/LoggedInBox.php"?>
 

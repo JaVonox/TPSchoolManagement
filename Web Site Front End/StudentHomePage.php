@@ -5,6 +5,7 @@ PageCheck(array("Student"));
 <html>
 <head>
     <style>
+        <?php include "CSS/Header.css"?>
         .button {
             background-color: #4472C4;
             color: white;
@@ -16,11 +17,7 @@ PageCheck(array("Student"));
             margin: 5%;
             cursor: pointer;
         }
-        .header {
-            background-color: #4472C4;
-            padding: 20px;
-            text-align: center;
-        }
+
         body {
             margin: 0;
         }
@@ -41,8 +38,8 @@ PageCheck(array("Student"));
 <body>
 <div class="header">
 
-    <h1>Student Home Page<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
-
+    <h1>Student Home Page</h1>
+    <a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a>
 	<?php include "PageElements/LoggedInBox.php"?>
 
 </div>
