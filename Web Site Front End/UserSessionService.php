@@ -46,7 +46,7 @@
 			}
 			$statement->close();
 			
-			if($_SESSION["Role"] = "Student")
+			if($_SESSION["Role"] == "Student")
 			{
 				$query = "select Class_Name
 				          from Class, Student
@@ -65,7 +65,7 @@
 			<?php
 			    
 			}
-			else if($_SESSION["Role"] = "Teacher")
+			else if($_SESSION["Role"] == "Teacher")
 			{
 				?><a href="TeacherHomePage.php">Continue</a>
 			<?php
