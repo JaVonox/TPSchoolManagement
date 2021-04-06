@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php 
+include_once "Scripts/PageAccessVerify.php";
+PageCheck(array("Teacher"));
+?>
 <html lang="English">
 <head>
     <style>
@@ -38,32 +42,72 @@
 
     <h1>My Details<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Year 9</p>
-    <p class="PersonDetails">Class 9f</p>
-    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
+	<?php include "PageElements/LoggedInBox.php";?>
 
 </div>
 <div class="Details">
-    <img style="float: right" src=Picture1.jpg>
     <!---Used php so that its easier for you to add database entries.--->
-    <?php   $FullName = "Rick Astley";
-            $DateOfBirth = "6/9/1969";
-            $ParentGuardianEmail = "NeverGonna@GiveYouUp.co.uk";
-            $ParentGuardianPhoneNumber = "074206942069";
-            $StudentSubjects = "Music"
+    <?php   
+			$dataGetter = new UserInteractionHandler();
+			$Information = $dataGetter->PullTeacherDetails($_SESSION['Login'],$_SESSION['Type']);
+			
+			$FullName = $Information['Name'];
+			$Sex = $Information['Sex'];
+			$SDate = $Information['Start Date'];
+            $DateOfBirth = date("d-m-Y",strtotime($Information['Date Of Birth']));
+            $Address = $Information['Address'];
+			$Medical = $Information['Medical Information'];
+			$Comments = $Information['Comments'];
+			$Phone = $Information['Phone_Number'];
+			
+			$Salary = $Information['Salary'];
+			$Education = $Information['Education'];
+			$Work = $Information['Work'];
+			$NI = $Information['NI'];
+			$Tax = $Information['Tax'];
+			$Bank = $Information['Bank'];
+			$Department = $Information['Department'];
+			$Leading = $Information['Leading'];
+			
     ?>
     <span class ="LinesUnderText">
+	If this data is incorrect and needs updating, contact your school immediately.
+		<br>
+		<h4>Personal Information:</h4>
         Full Name: <?php echo "<label style='font-weight: normal'>".$FullName."</label>"?>
     <br>
+        Sex: <?php echo "<label style='font-weight: normal'>".$Sex."</label>"?>
+	<br>
+		Date Of Birth: <?php echo "<label style='font-weight: normal'>".$DateOfBirth."</label>"?> 
     <br>
-        Date Of Birth: <?php echo "<label style='font-weight: normal'>".$DateOfBirth."</label>"?>
+        Address: <?php echo "<label style='font-weight: normal'>".$Address."</label>"?>
     <br>
+		Phone Number: <?php echo "<label style='font-weight: normal'>".$Phone."</label>"?>
+	<br>
+		Medical Information: <?php echo "<label style='font-weight: normal'>".$Medical."</label>"?>
     <br>
-        Parent/Guardian Phone Number: <?php echo "<label style='font-weight: normal'>".$ParentGuardianPhoneNumber."</label>"?>
+		Additional Comments: <?php echo "<label style='font-weight: normal'>".$Comments."</label>"?>
     <br>
+	
+		<h4>Teacher Information:</h4>
+		Department: <?php echo "<label style='font-weight: normal'>".$Department."</label>"?> 
+	<br>
+		Leader of: <?php echo "<label style='font-weight: normal'>".$Leading."</label>"?>
+	<br>
+		Start Date: <?php echo "<label style='font-weight: normal'>".$SDate."</label>"?>
+	<br>	
+        <h4>Employment Information:</h4>
+		Salary: <?php echo "<label style='font-weight: normal'>".$Salary."</label>"?> 
+	<br>
+		National Insurance: <?php echo "<label style='font-weight: normal'>".$NI."</label>"?>
+	<br>
+		Tax Code: <?php echo "<label style='font-weight: normal'>".$Tax."</label>"?>
     <br>
-        Student Subjects: <?php echo "<label style='font-weight: normal'>".$StudentSubjects."</label>"?>
+		Bank Details: <?php echo "<label style='font-weight: normal'>".$Bank."</label>"?>
+	<br>
+		Education: <?php echo "<label style='font-weight: normal'>".$Education."</label>"?>
+    <br>
+		Previous Work: <?php echo "<label style='font-weight: normal'>".$Work."</label>"?>
     </span>
 </div>
 </body>

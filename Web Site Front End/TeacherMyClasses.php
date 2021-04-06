@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-
+<?php include "Scripts/PageAccessVerify.php";
+PageCheck(array("Teacher"));
+?>
 <head>
 <style>
   .buttonLogOut
@@ -79,40 +81,34 @@ body
 
     <h1>My Classes<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Head of English Department</p>
-    <p class="PersonDetails">Teacher</p>
-    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
+	<?php include "PageElements/LoggedInBox.php"?>
   </div>
 
 <br>
 
-<div class = sizeof>
+<?php   
+	$dataGetter = new UserInteractionHandler();
+	$classDetails = $dataGetter->PullAllClassesTeacher($_SESSION['Login']);
+?>
 
+<div class = "sizeof">
 <div id ="dropdown">
-    <a href='#nav'><div class="dropdownClass">Class 1</div></a>
-    <div class="expand grid-item"  id="nav">
-      <div class="dropdownElement">Student 1</div>                                          <!--anchor tags will need to be populated with SQL script that takes teacher to specific student details -->
-      <div class="dropdownElementEdit"><a href="StudentList.php">View</a></div>        <!-- each div needs to be populated with the database data -->
-      <div class="dropdownElement">Student 2</div>                                                 <!-- you will probably need to create a loop to dynamically add the data -->
-      <div class="dropdownElementEdit">View</div>
-      <div class="dropdownElement">Student 3</div>                                                 <!-- student divs will need to be replace with their corresponding details -->
-      <div class="dropdownElementEdit">View</div>                                            <!-- for each specific student -->
-    </div>
-    <a href='#nav2'><div class="dropdownClass">Class 2</div></a>
-    <div class="expand grid-item"  id="nav2">
-      <div class="dropdownElement">Student 1</div>
-      <div class="dropdownElementEdit">View</div>
-      <div class="dropdownElement">Student 2</div>
-      <div class="dropdownElementEdit">View</div>
-    </div>
-    <a href='#nav3'><div class="dropdownClass">Class 3</div></a>
-    <div class="expand grid-item"  id="nav3">
-      <div class="dropdownElement">Student 1</div>
-      <div class="dropdownElementEdit">View</div>
-    </div>
+	<?php
+	
+	for($i=0;$i<count($classDetails);$i++) //Relies on class having atleast one member. Needs modifying to fix this problem.
+	{
+		echo '<a href="#nav' . $i .'"><div class="dropdownClass">Class ' . $classDetails[$i][0]['Class_ID'] . '</div></a>';
+		echo '<div class="expand grid-item"  id="nav' . $i . '">';
+		
+		for($j=0;$j<count($classDetails[$i]);$j++)
+		{
+			echo '<div class="dropdownElement">' . $classDetails[$i][$j]['Person_ID'] . " : " . $classDetails[$i][$j]['First_Name'] . " " . $classDetails[$i][$j]['Last_Name'] . '</div>';                                      
+			echo '<div class="dropdownElementEdit"><a href="StudentList.php?Focus=' . $classDetails[$i][$j]['Person_ID'] .'">View</a></div>';
+		}		
+		echo '</div>';
+	}
+	?>
 </div>
-
 </div>
 
 </body>

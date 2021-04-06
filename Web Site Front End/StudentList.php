@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php 
+include "Scripts/PageAccessVerify.php";
+PageCheck(array("Staff","Teacher"));
+
+$focusStudent = "";
+isset($_GET['Focus']) ? $focusStudent = $_GET['Focus'] : $focusStudent="";
+?>
 <html lang="English">
 <head>
     <style>
@@ -54,10 +61,7 @@
 
     <h1>Student List<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Head of English</p>
-    <p class="PersonDetails">Teacher</p>
-    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
+	<?php include "PageElements/LoggedInBox.php"?>
 
 </div>
 
@@ -70,7 +74,7 @@
         <th class="tableheading">Year</th>
         <th class="tableheading">Optional Subjects</th>
         <th><div class="InputBox">
-                <input id="myInput" onkeyup="SearchFunction()" placeholder="Search for names.." style=" padding: 8px" type = "text">
+                <input id="myInput" onkeyup="SearchFunction()" placeholder="Search for names.." style=" padding: 8px" type = "text" value="<?php echo $focusStudent;?>">
                 <button class ="button">Search</button>
             </div>
         </th>
@@ -80,47 +84,80 @@
     <tbody>
     <?php
     $DataBaseData = 0;
+
+	$dataGetter = new UserInteractionHandler();
+	$studentsArray = $dataGetter->PullStudentsArray();
+
     //Changing count number (10) changes the amount of rows. So table is dynamic to the number of records in the
     //database
-    while ($DataBaseData < 10)
+	$i = 0;
+    while ($i < count($studentsArray))
     {
-        $DataBaseData = $DataBaseData + 1;
         echo "<tr>";
         //Student ID
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$studentsArray[$i]['Person_ID']."</td>";
         //Full Name
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$studentsArray[$i]['First_Name']." ". $studentsArray[$i]['Last_Name'] ."</td>";
         //Year
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>".$studentsArray[$i]['Class_Year']."</td>";
         //Optional Subjects
-        echo "<td>".$DataBaseData."</td>";
+        echo "<td>TBA</td>";
 
         echo "</tr>";
+		$i++;
     }
     echo "</tbody>";
     echo "</table>";
     ?>
     </tbody>
     <script>
-        //Searches first column in table
-        function SearchFunction() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("table");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
+		
+	var focusInput = "<?php echo $focusStudent;?>";
+	
+	if(focusInput != "") //If a parameter has been provided, limit to just this parameter.
+	{
+		SearchExactMatch();
+	}
+	
+	//Searches first column in table
+	function SearchFunction() {
+		var input, filter, table, tr, td, i, txtValue;
+		input = document.getElementById("myInput");
+		filter = input.value.toUpperCase();
+		table = document.getElementById("table");
+		tr = table.getElementsByTagName("tr");
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		}
+	}
+	
+	function SearchExactMatch()
+	{
+		var input, filter, table, tr, td, i, txtValue;
+		input = document.getElementById("myInput");
+		filter = input.value.toUpperCase();
+		table = document.getElementById("table");
+		tr = table.getElementsByTagName("tr");
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase() == filter) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		}
+	}
     </script>
 </body>
 </html>

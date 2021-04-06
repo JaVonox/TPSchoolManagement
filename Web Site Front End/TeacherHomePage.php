@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php include "Scripts/PageAccessVerify.php";
+PageCheck(array("Teacher"));
+?>
 <html>
 <head>
     <style>
@@ -40,10 +43,7 @@
 
     <h1>Teacher Home Page<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Head of English</p>
-    <p class="PersonDetails">Teacher</p>
-    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
+<?php include "PageElements/LoggedInBox.php"?>
 
 </div>
 
@@ -54,7 +54,7 @@
     <a href="StudentList.php" class="button">Student List</a>
     <a href="TeacherCreditBalance.php" class="button">Credit Balance</a>
     <a href="TeacherStudentGrades.php" class="button">Student Grades</a>
-    <a href="TeacherClassroom.php" class="button">Classroom</a>
+    <a href="Classrooms.php" class="button">Classroom</a>
 
 </div>
 
