@@ -3,6 +3,7 @@
 PageCheck(array("Teacher"));
 ?>
 <head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <style>
     <?php include "CSS/Header.css"?>
   .buttonLogOut
@@ -32,6 +33,11 @@ body
             width: 70%;
             color: white;
         }
+.dropdownClass a
+        {
+            text-decoration: none;
+            color: white;
+        }
 .dropdownElement
         {
             background: #4472C4;
@@ -44,6 +50,11 @@ body
             width: 200px;
             color: white;
             text-align: center;
+        }
+.dropdownElementEdit a
+        {
+            text-decoration: none;
+            color: white;
         }
 
 .expand {
