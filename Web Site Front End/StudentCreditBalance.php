@@ -48,6 +48,7 @@ PageCheck(array("Student"));
             margin-top: 1%;
         }
     </style>
+	
 </head>
 <body>
 <div class="header">
