@@ -10,23 +10,10 @@ isset($_GET['Focus']) ? $focusStudent = $_GET['Focus'] : $focusStudent="";
 <head>
     <style>
         <?php include "CSS/Header.css"?>
-        .buttonLogOut {
-            background-color: lightblue;
-            padding: 3px 8px;
-            margin-right: 100%;
-        }
-        .PersonDetails {
-            text-align: left;
-            font-size: 12px;
-        }
+
         body {
             margin: 0;
 
-        }
-
-        .button {
-            background-color: #4472C4;
-            padding: 8px 16px;
         }
         table.Rows {
             border: 1px solid #FFFFFF;

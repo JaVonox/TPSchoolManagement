@@ -9,15 +9,6 @@ PageCheck(array("Teacher"));
         body {
             margin: 0;
         }
-        .buttonLogOut {
-            background-color: lightblue;
-            padding: 3px 8px;
-            margin-right: 100%;
-        }
-        .PersonDetails {
-            text-align: left;
-            font-size: 12px;
-        }
         .CreditTotal {
             height:50px;
             border-bottom: 1px solid cornflowerblue;
@@ -36,10 +27,19 @@ PageCheck(array("Teacher"));
         }
         .button {
             background-color: #4472C4;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+            cursor: pointer;
+            font-family: Lato, sans-serif;
             padding: 8px 16px;
+            border-style: hidden;
         }
         .CreditTopUp {
-            margin-left: 70%;
+            margin-left: 80%;
             margin-top: 1%;
         }
     </style>
@@ -68,7 +68,7 @@ PageCheck(array("Teacher"));
 
 <div class="CreditTopUp">
     <!---Button and input box to top up their credit total--->
-    <input style="margin-right: 1%; padding: 8px" type = "text">
+    <input placeholder="Amount to add" style="padding: 8px" type = "text">
     <button class ="button">Pay</button>
 </div>
 
@@ -80,7 +80,7 @@ PageCheck(array("Teacher"));
         {
             echo "<span class='LinesUnderText'>";
             echo "<label style='font-size: 25px; '>".$transactions[$i]['Date_Of_Transaction']."</label>";
-            echo "<label style='float:right; margin-right: 60%; font-size: 25px'>£".$transactions[$i]['Transaction_Value']."</label></span>";
+            echo "<label style='padding-left: 500px; font-size: 25px'>£".$transactions[$i]['Transaction_Value']."</label></span>";
             echo "<br>";
             echo "<br>";
             echo "</span>";
