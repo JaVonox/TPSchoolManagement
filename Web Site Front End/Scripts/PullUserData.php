@@ -31,16 +31,88 @@ class UserInteractionHandler
 		return $info;
 	}
 	
-	function PullPersonDetails($user,$type) //For the "My Details" pages
+	function PullStudentDetails($user,$type) //For the "My Details" pages
 	{
-		$info = array("Name"=>"","Date Of Birth "=>"","Phone Number"=>"","Role"=>"");
+		$info = array("Name"=>"","Date Of Birth"=>"","Role"=>"","Start Date"=>"","Sex"=>"",
+		"Address"=>"","Medical Information"=>"","Comments"=>"","Class"=>"","Year"=>"","GName"=>"","GAddress"=>"",
+		"GPhone Number"=>"","GComments"=>"","GRelationship"=>"");
 		
-		$result = $this->connectionData->query("SELECT person.First_Name,person.Last_Name,person.Role,person.Date_Of_birth,person.Phone_Number FROM person WHERE Person_ID = ". $user . ";");
+		$result = $this->connectionData->query("SELECT First_Name, Last_Name, Date_Of_Birth, 
+		Start_Date, Sex, Address, Medical_Information, Comments, Class_Name, Class_Year 
+		FROM Person, Student, Class 
+		WHERE Person.Person_ID = ". $user . "
+		AND Student.Person_ID = Person.Person_ID
+		AND Class.Class_ID = Student.Class_ID;") or die($this->connectionData->error);
+		
+		
 		$dataSet = $result->fetch_assoc();
 		$info['Name'] = $dataSet['First_Name'] . " " . $dataSet['Last_Name'];
-		$info['Date_Of_birth'] = $dataSet['Date_Of_birth'];
-		$info['Role'] = $dataSet['Role'];
+		$info['Date Of Birth'] = $dataSet['Date_Of_Birth'];
+		$info['Start Date'] = $dataSet['Start_Date'];
+		$info['Sex'] = $dataSet['Sex'];
+		$info['Address'] = $dataSet['Address'];
+		$info['Medical Information'] = $dataSet['Medical_Information'];
+		$info['Comments'] = $dataSet['Comments'];
+		$info['Class'] = $dataSet['Class_Name'];
+		$info['Year'] = $dataSet['Class_Year'];
+		
+		$result = $this->connectionData->query("SELECT Person.First_Name, Person.Last_Name, 
+		Person.Phone_Number, Person.Address, Person.Comments, Student.Guardian_Relationship
+		FROM Person, Student
+		WHERE Student.Person_ID = ". $user . "
+		AND Student.Guardian_ID = Person.Person_ID;") or die($this->connectionData->error);
+		$dataSet = $result->fetch_assoc();
+		$info['GName'] = $dataSet['First_Name'] . " " . $dataSet['Last_Name'];
+		$info['GAddress'] = $dataSet['Address'];
+		$info['GPhone Number'] = $dataSet['Phone_Number'];
+		$info['GComments'] = $dataSet['Comments'];
+		$info['GRelationship'] = $dataSet['Guardian_Relationship'];
+		
+		return $info;
+	}
+	
+	function PullTeacherDetails($user,$type) //For the "My Details" pages
+	{
+		$info = array("Name"=>"","Date Of Birth "=>"","Phone Number"=>"","Start Date"=>"","Sex"=>"",
+		"Address"=>"","Medical Information"=>"","Comments"=>"", "Salary"=>"",
+		"Education"=>"", "Work"=>"", "NI"=>"", "Tax"=>"", "Bank"=>"", "Department"=>"", "Leading"=>"");
+		
+		$result = $this->connectionData->query("SELECT Person.First_Name, Person.Last_Name, Person.Date_Of_birth, 
+		Person.Phone_Number, Person.Start_Date, Person.Sex, Person.Address, Person.Medical_Information, Person.Comments,
+		Staff.Salary, Staff.Education_and_Qualification, Staff.Work_Experience, Staff.LeaderOf, Staff.National_Insurance, 
+		Staff.Tax_Code, Staff.Bank_Details, Department_Name FROM Person, Staff, Department 
+		WHERE Person.Person_ID = ". $user . "
+		AND Person.Person_ID = Staff.Person_ID
+		AND Staff.Department_ID = Department.Department_ID;") or die($this->connectionData->error);;
+		$dataSet = $result->fetch_assoc();
+		$info['Name'] = $dataSet['First_Name'] . " " . $dataSet['Last_Name'];
+		$info['Date Of Birth'] = $dataSet['Date_Of_birth'];
+		$info['Start Date'] = $dataSet['Start_Date'];
+		$info['Sex'] = $dataSet['Sex'];
+		$info['Address'] = $dataSet['Address'];
+		$info['Medical Information'] = $dataSet['Medical_Information'];
+		$info['Comments'] = $dataSet['Comments'];
+		$info['Salary'] = $dataSet['Salary'];
+		$info['Education'] = $dataSet['Education_and_Qualification'];
+		$info['Work'] = $dataSet['Work_Experience'];
+		$info['NI'] = $dataSet['National_Insurance'];
+		$info['Tax'] = $dataSet['Tax_Code'];
+		$info['Bank'] = $dataSet['Bank_Details'];
+		$info['Department'] = $dataSet['Department_Name'];
 		$info['Phone_Number'] = $dataSet['Phone_Number'];
+		
+		if (is_null ($dataSet["LeaderOf"]))
+		{
+			$info['Leading'] = "no department";
+		}
+		else
+		{
+			$result = $this->connectionData->query("SELECT Department_Name FROM Staff, Department 
+			WHERE Staff.Person_ID = ". $user . "
+			AND Staff.LeaderOf = Department.Department_ID;") or die($this->connectionData->error);;
+			$dataSet = $result->fetch_assoc();
+			$info['Leading'] = $dataSet['Department_Name'];
+		}
 		return $info;
 	}
 	
