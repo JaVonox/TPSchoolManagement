@@ -147,7 +147,6 @@
 			while($statement->fetch())
 			{
 				$ASSOCIATIVE_ARRAY["Assessment_ID"][$i] = $Assessment_ID;
-				echo "<p>ID is ".$ASSOCIATIVE_ARRAY["Assessment_ID"][$i]."</p>";
 				$ASSOCIATIVE_ARRAY["Grade"][$i] = $Grade;
 				
 				$i++;
