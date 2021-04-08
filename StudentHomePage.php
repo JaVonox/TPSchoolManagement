@@ -1,5 +1,8 @@
 <?php
-    session_start();
+	require "Scripts/PageAccessVerify.php";
+	require "Scripts/PullUserData.php";
+	PageCheck(array($_SESSION['Type']));
+	$info = PullStudentDetails($_SESSION['Login'], $_SESSION['Type']);
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,3 +1,11 @@
+<?php
+    require "Scripts/PageAccessVerify.php";
+    require "Scripts/GradesAndAssessmentsService.php";
+    require "Scripts/PullUserData.php";
+	PageCheck(array($_SESSION['Type']));
+	$info = PullStudentDetails($_SESSION['Login'], $_SESSION['Type']);
+?>
+
 <!DOCTYPE html>
 <html lang="English">
 <head>
@@ -15,6 +23,9 @@
         .PersonDetails {
             text-align: left;
             font-size: 12px;
+        }
+        table.paleBlueRows td {
+            width: 325px;
         }
         table.paleBlueRows {
             font-family: "Times New Roman", Times, serif;
@@ -48,8 +59,16 @@
         table.paleBlueRows thead th:first-child {
             border-left: none;
         }
-        table.paleBlueRows td {
-            width: 325px;
+
+        table.paleBlueRows tfoot {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333333;
+            background: #D0E4F5;
+            border-top: 3px solid #444444;
+        }
+        table.paleBlueRows tfoot td {
+            font-size: 14px;
         }
         .buttonLogOut {
             background-color: lightblue;
@@ -61,59 +80,27 @@
 <body>
 <div class="header">
 
-    <h1>Assessments<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>My Grades<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Year 9</p>
-    <p class="PersonDetails">Class 9f</p>
+    <p class="PersonDetails"><?php echo $info['Name']; ?></p>
+    <p class="PersonDetails">Year <?php echo $info['Year']; ?></p>
+    <p class="PersonDetails">Class <?php echo $info['Class']; ?></p>
     <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
 
 </div>
 <table class="paleBlueRows">
     <thead>
     <tr>
-        <th class="tableheading">Name</th>
-        <th class="tableheading">Type</th>
-        <th class="tableheading">Class</th>
-        <th class="tableheading">Date Assigned</th>
-        <th class="tableheading">Date Due</th>
-        <th class="tableheading">Date Extension</th>
-        <th class="tableheading">Duration</th>
+        <th class="tableheading">Subject</th>
         <th class="tableheading">Grade</th>
         <th class="tableheading">Comments</th>
     </tr>
     </thead>
     <tbody>
-    <?php
-    $DataBaseData = 0;
-    //Changing count number (10) changes the amount of rows. So table is dynamic to the number of records in the
-    //database
-    while ($DataBaseData < 10)
-    {
-        $DataBaseData = $DataBaseData + 1;
-        echo "<tr>";
-        //Name
-        echo "<td>".$DataBaseData."</td>";
-        //Type
-        echo "<td>".$DataBaseData."</td>";
-        //Class
-        echo "<td>".$DataBaseData."</td>";
-        //Date Assigned
-        echo "<td>".$DataBaseData."</td>";
-        //Date Due
-        echo "<td>".$DataBaseData."</td>";
-        //Date Extension
-        echo "<td>".$DataBaseData."</td>";
-        //Duration
-        echo "<td>".$DataBaseData."</td>";
-        //Grade
-        echo "<td>".$DataBaseData."</td>";
-        //Comments
-        echo "<td>".$DataBaseData."</td>";
-        echo "</tr>";
-    }
-    echo "</tbody>";
-    echo "</table>";
-    ?>
-    </tbody>
+<?php
+        studentGradesQuery($_SESSION['Person_ID']);
+        echo "</tbody>";
+        echo "</table>";
+?>
+</tbody>
 </html>

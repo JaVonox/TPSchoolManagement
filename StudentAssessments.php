@@ -1,3 +1,9 @@
+<?php
+    require "Scripts/PageAccessVerify.php";
+    require "Scripts/GradesAndAssessmentsService.php";
+	PageCheck(array($_SESSION['Type']));
+	$info = PullStudentDetails($_SESSION['Login'], $_SESSION['Type']);
+?>
 <!DOCTYPE html>
 <html lang="English">
 <head>
@@ -63,9 +69,9 @@
 
     <h1>Assessments<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Year 9</p>
-    <p class="PersonDetails">Class 9f</p>
+    <p class="PersonDetails"><?php echo $info['Name']; ?></p>
+    <p class="PersonDetails">Year <?php echo $info['Year']; ?></p>
+    <p class="PersonDetails">Class <?php echo $info['Class']; ?></p>
     <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
 
 </div>
@@ -85,33 +91,7 @@
     </thead>
     <tbody>
     <?php
-    $DataBaseData = 0;
-    //Changing count number (10) changes the amount of rows. So table is dynamic to the number of records in the
-    //database
-    while ($DataBaseData < 10)
-    {
-        $DataBaseData = $DataBaseData + 1;
-        echo "<tr>";
-        //Name
-        echo "<td>".$DataBaseData."</td>";
-        //Type
-        echo "<td>".$DataBaseData."</td>";
-        //Class
-        echo "<td>".$DataBaseData."</td>";
-        //Date Assigned
-        echo "<td>".$DataBaseData."</td>";
-        //Date Due
-        echo "<td>".$DataBaseData."</td>";
-        //Date Extension
-        echo "<td>".$DataBaseData."</td>";
-        //Duration
-        echo "<td>".$DataBaseData."</td>";
-        //Grade
-        echo "<td>".$DataBaseData."</td>";
-        //Comments
-        echo "<td>".$DataBaseData."</td>";
-        echo "</tr>";
-    }
+    findStudentAssessments($_SESSION['Login']);
     echo "</tbody>";
     echo "</table>";
     ?>
