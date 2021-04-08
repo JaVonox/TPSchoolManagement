@@ -1,6 +1,9 @@
 <?php
-    require "GradesAndAssessmentsService.php";
-	session_start();
+    require "Scripts/PageAccessVerify.php";
+    require "Scripts/GradesAndAssessmentsService.php";
+    require "Scripts/PullUserData.php";
+	PageCheck(array($_SESSION['Type']));
+	$info = PullStudentDetails($_SESSION['Login'], $_SESSION['Type']);
 ?>
 
 <!DOCTYPE html>
@@ -79,9 +82,9 @@
 
     <h1>My Grades<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails"><?php echo $_SESSION['First_Name']." ".$_SESSION['Last_Name']; ?></p>
-    <p class="PersonDetails">Year <?php //echo $_SESSION['StudentYear']; ?></p>
-    <p class="PersonDetails">Class <?php echo $_SESSION['Student_Class']; ?></p>
+    <p class="PersonDetails"><?php echo $info['Name']; ?></p>
+    <p class="PersonDetails">Year <?php echo $info['Year']; ?></p>
+    <p class="PersonDetails">Class <?php echo $info['Class']; ?></p>
     <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
 
 </div>

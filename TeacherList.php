@@ -1,5 +1,8 @@
 <?php
-    require "dbinfo.php";
+    require "Scripts/PageAccessVerify.php";
+    require "Scripts/dbinfo.php";
+	require "Scripts/PullUserData.php";
+	PageCheck(array($_SESSION['Type']));
 ?>
 <!DOCTYPE html>
 <html lang="English">
@@ -57,8 +60,8 @@
 
     <h1>Teacher List<a href="StaffHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Head of English</p>
+    <p class="PersonDetails"><?php echo $info['Name']; ?></p>
+    <p class="PersonDetails"><?php if($info['Leading'] == "no department"){ echo "Member of ".$info['Department']; }else{ echo "Head of ".$info['Department']; } ?></p>
     <p class="PersonDetails">Teacher</p>
     <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
 

@@ -1,7 +1,8 @@
 <?php
-    require "PageAccessVerify.php";
-    require "GradesAndAssessmentsService.php";
+    require "Scripts/PageAccessVerify.php";
+    require "Scripts/GradesAndAssessmentsService.php";
 	PageCheck(array($_SESSION['Type']));
+	$info = PullStudentDetails($_SESSION['Login'], $_SESSION['Type']);
 ?>
 <!DOCTYPE html>
 <html lang="English">
@@ -68,9 +69,9 @@
 
     <h1>Assessments<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Year 9</p>
-    <p class="PersonDetails">Class 9f</p>
+    <p class="PersonDetails"><?php echo $info['Name']; ?></p>
+    <p class="PersonDetails">Year <?php echo $info['Year']; ?></p>
+    <p class="PersonDetails">Class <?php echo $info['Class']; ?></p>
     <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
 
 </div>
@@ -90,7 +91,7 @@
     </thead>
     <tbody>
     <?php
-    findStudentAssessments(14);
+    findStudentAssessments($_SESSION['Login']);
     echo "</tbody>";
     echo "</table>";
     ?>
