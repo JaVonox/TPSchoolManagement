@@ -162,6 +162,25 @@ class UserInteractionHandler
 		return $dataSet;
 	}
 	
+	function PullLessonsTimeForTeacher($id) //Used to get the 7 days info.
+	{
+		$datesArray = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+		
+		$curDate = date("d.m.Y");
+		$curDayOffset = intval(array_search(date("l"),$datesArray)); //date("l")
+		
+		$mondayDateUnformat = date('d.m.Y', strtotime('-' . $curDayOffset . ' day', strtotime($curDate))); //Last Monday
+		$nextBoundaryDateUnformat = date('d.m.Y', strtotime('+ 7 day', strtotime($mondayDateUnformat))); //Next Monday
+
+		$mondayDateFormat = date("Y-m-d 00:00:00", strtotime($mondayDateUnformat));
+		$nextBoundaryDateFormat = date("Y-m-d 00:00:00", strtotime($nextBoundaryDateUnformat));
+		
+		$result = $this->connectionData->query("SELECT lesson.Class_ID,subject.Subject_Name,classroom.Classroom_Name,lesson.Lesson_Date FROM lesson INNER JOIN subject ON lesson.Subject_ID = subject.Subject_ID INNER JOIN classroom ON lesson.Classroom_ID = classroom.Classroom_ID WHERE lesson.Staff_Person_ID = ".$id." AND (lesson.Lesson_Date BETWEEN '" . $mondayDateFormat . "' AND '" . $nextBoundaryDateFormat . "');");
+		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
+		
+		return json_encode($dataSet);
+	}
+	
 	
 	
 }
