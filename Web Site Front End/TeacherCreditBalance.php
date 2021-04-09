@@ -58,10 +58,16 @@ PageCheck(array("Teacher"));
 
 </div>
 <div class="CreditTotal">
+
 <?php 
-	
 	$id = $_SESSION['Login'];
 	$fetcher = new UserInteractionHandler();
+	$topup = "";
+	if (isset($_POST['newbalance']))
+	{
+		$topup = $fetcher->AddToBalance($id, $_POST['newbalance']);
+	}
+	
 	$balance = $fetcher->PullBalance($id);
 	echo "<h1>£".$balance[0]['Balance']."</h1>";
 	echo "<h2>Last Top Up: ".$balance[0]['Last_Top_Up']."</h2>";
@@ -71,11 +77,12 @@ PageCheck(array("Teacher"));
 
 </div>
 
-<div class="CreditTopUp">
+<form Name ="form" Method ="POST" ACTION = "TeacherCreditBalance.php" class="CreditTopUp">
     <!---Button and input box to top up their credit total--->
-    <input style="margin-right: 1%; padding: 8px" type = "text">
-    <button class ="button">Pay</button>
-</div>
+    <input Name="newbalance" style="margin-right: 1%; padding: 8px" type = "text">
+    <input type = "submit" value = "Top up" Name= "Top Up" class ="button" >
+	<?php echo "<p>". $topup . "</p>"; ?>
+</form>
 
 <div class="Transactions">
 
