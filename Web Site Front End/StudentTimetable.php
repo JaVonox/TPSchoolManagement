@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <?php include "Scripts/PageAccessVerify.php";
 require "Scripts/PullUserData.php";
-PageCheck(array("Teacher"));
+PageCheck(array("Student"));
 $dataGetter = new UserInteractionHandler();
 
-$timelineInfo = $dataGetter->PullLessonsTimeForTeacher($_SESSION['Login']);
+$timelineInfo = $dataGetter->PullLessonsTimeForStudent($_SESSION['Login']);
 ?>
 <html lang="English">
 <head>
@@ -27,8 +27,8 @@ $timelineInfo = $dataGetter->PullLessonsTimeForTeacher($_SESSION['Login']);
 			min-width:64px;
 			height:64px;
 		}
-		
-		body {
+
+        body {
             margin: 0;
         }
         .PersonDetails {
@@ -48,7 +48,7 @@ $timelineInfo = $dataGetter->PullLessonsTimeForTeacher($_SESSION['Login']);
 <body>
 <div class="header">
 
-    <h1>My Timetable<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>My Timetable<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
 	<?php include "PageElements/LoggedInBox.php"?>
 
@@ -122,6 +122,7 @@ var days = [];
 var timeData = <?php echo $timelineInfo; ?>;
 var currentDate = new Date(); //This is in unix time.
 
+//console.log(timeData);
 LoadDays();
 
 for(i=0;i<7;i++)
@@ -147,7 +148,7 @@ function LoadTimeline(Iteration) //Iteration is the relative day (Monday To Sund
 		if(eventSlot.getDate() == days[Iteration].getDate())
 		{
 			var slotValue = 2 + eventSlot.getHours();
-			td[slotValue].innerHTML += "<b>"  + timeData[j].Subject_Name + "</b><br>Class " + timeData[j].Class_Name + "<br>" +  timeData[j].Classroom_Location + "<br>Room " + timeData[j].Classroom_Name + "<br>";
+			td[slotValue].innerHTML += "<b>"  + timeData[j].Subject_Name + "</b><br>" +  timeData[j].Classroom_Location +  "<br>Room " + timeData[j].Classroom_Name + "<br>";
 		}
 	}
 	
