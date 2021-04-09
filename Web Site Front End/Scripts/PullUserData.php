@@ -161,6 +161,31 @@ class UserInteractionHandler
 		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
 		return $dataSet;
 	}
+	function AddToBalance($id, $money) //user = ID, money = money to be added.
+	{
+		if(!is_numeric($money))
+		{
+			return "This cannot be added.";
+		}
+		//GET OLD BALANCE
+		$result = $this->connectionData->query("SELECT Balance FROM Credit WHERE Person_ID = ".$id.";");
+		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
+		$oldbal = $dataSet[0]['Balance'];
+		$newbal = $money + $oldbal;
+		$newdate = date('Y-m-d');
+		
+		//UPDATE BALANCE
+		$result = $this->connectionData->query("UPDATE Credit set Balance = ". $newbal . ", Last_Top_Up = \"" . $newdate . "\" WHERE Person_ID = ". $id . ";");
+		if ($result == FALSE)
+		{
+			return "Sorry, this top up did not work.";
+		}
+		else
+		{
+			return "Top up successful!";
+		}
+		return $info;
+	}
 	
 	
 	
