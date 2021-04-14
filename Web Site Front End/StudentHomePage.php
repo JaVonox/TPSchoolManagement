@@ -53,7 +53,7 @@ PageCheck(array("Student"));
     <a href="StudentMyDetails.php" class="button">My Details</a>
     <a href="StudentAssessments.php" class="button">Assessments</a>
     <a href="StudentCreditBalance.php" class="button">Credit Balance</a>
-
+	<a href="StudentTimetable.php" class="button">Timetable</a>
 </div>
 
 

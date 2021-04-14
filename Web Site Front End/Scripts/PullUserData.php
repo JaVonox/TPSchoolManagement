@@ -7,7 +7,7 @@ class UserInteractionHandler
 	
 	function __Construct()
 	{
-		require "dbinfo.php"; //pull database info
+		require "Scripts/dbinfo.php"; //pull database info
 		
 		$conn = new mysqli($dbserver, $dbusername, $dbpassword, $dbdatabase);
 		if($conn->connect_error) 
@@ -185,6 +185,44 @@ class UserInteractionHandler
 			return "Top up successful!";
 		}
 		return $info;
+	}
+	
+	function PullLessonsTimeForTeacher($id) //Used to get the 7 days info. (Teacher)
+	{
+		$datesArray = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+		
+		$curDate = date("d.m.Y");
+		$curDayOffset = intval(array_search(date("l"),$datesArray)); //date("l")
+		
+		$mondayDateUnformat = date('d.m.Y', strtotime('-' . $curDayOffset . ' day', strtotime($curDate))); //Last Monday
+		$nextBoundaryDateUnformat = date('d.m.Y', strtotime('+ 7 day', strtotime($mondayDateUnformat))); //Next Monday
+
+		$mondayDateFormat = date("Y-m-d 00:00:00", strtotime($mondayDateUnformat));
+		$nextBoundaryDateFormat = date("Y-m-d 00:00:00", strtotime($nextBoundaryDateUnformat));
+		
+		$result = $this->connectionData->query("SELECT class.Class_Name,classroom.Classroom_Location,subject.Subject_Name,classroom.Classroom_Name,lesson.Lesson_Date FROM lesson INNER JOIN subject ON lesson.Subject_ID = subject.Subject_ID INNER JOIN classroom ON lesson.Classroom_ID = classroom.Classroom_ID INNER JOIN class ON class.Class_ID = lesson.Class_ID WHERE lesson.Staff_Person_ID = ".$id." AND (lesson.Lesson_Date BETWEEN '" . $mondayDateFormat . "' AND '" . $nextBoundaryDateFormat . "');");
+		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
+		
+		return json_encode($dataSet);
+	}
+	
+	function PullLessonsTimeForStudent($id) //Used to get the 7 days info. (Student)
+	{
+		$datesArray = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+		
+		$curDate = date("d.m.Y");
+		$curDayOffset = intval(array_search(date("l"),$datesArray)); //date("l")
+		
+		$mondayDateUnformat = date('d.m.Y', strtotime('-' . $curDayOffset . ' day', strtotime($curDate))); //Last Monday
+		$nextBoundaryDateUnformat = date('d.m.Y', strtotime('+ 7 day', strtotime($mondayDateUnformat))); //Next Monday
+
+		$mondayDateFormat = date("Y-m-d 00:00:00", strtotime($mondayDateUnformat));
+		$nextBoundaryDateFormat = date("Y-m-d 00:00:00", strtotime($nextBoundaryDateUnformat));
+		
+		$result = $this->connectionData->query("SELECT subject.Subject_Name,classroom.Classroom_Location,classroom.Classroom_Name,lesson.Lesson_Date FROM lesson INNER JOIN subject ON lesson.Subject_ID = subject.Subject_ID INNER JOIN classroom ON lesson.Classroom_ID = classroom.Classroom_ID WHERE lesson.Class_ID = (SELECT student.Class_ID FROM student WHERE student.Person_ID = " . $id . ") AND (lesson.Lesson_Date BETWEEN '" . $mondayDateFormat . "' AND '" . $nextBoundaryDateFormat . "');");
+		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
+		
+		return json_encode($dataSet);
 	}
 	
 	

@@ -1,7 +1,15 @@
-<!DOCTYPE html>
-<?php include "Scripts/PageAccessVerify.php";
-PageCheck(array("Student"));
+<?php
+    require "Scripts/PageAccessVerify.php";
+    require "Scripts/GradesAndAssessmentsService.php";
+    require "Scripts/PullUserData.php";
+	
+	PageCheck(array("Student"));
+	
+	$dataGetter = new UserInteractionHandler();
+	$info = $dataGetter->PullStudentDetails($_SESSION['Login'], $_SESSION['Type']);
 ?>
+
+<!DOCTYPE html>
 <html lang="English">
 <head>
     <style>
@@ -77,7 +85,10 @@ PageCheck(array("Student"));
 
     <h1>My Grades<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-	<?php include "PageElements/LoggedInBox.php"?>
+    <p class="PersonDetails"><?php echo $info['Name']; ?></p>
+    <p class="PersonDetails">Year <?php echo $info['Year']; ?></p>
+    <p class="PersonDetails">Class <?php echo $info['Class']; ?></p>
+    <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
 
 </div>
 <table class="paleBlueRows">
@@ -90,21 +101,7 @@ PageCheck(array("Student"));
     </thead>
     <tbody>
 <?php
-        $DataBaseData = 0;
-        //Changing count number (10) changes the amount of rows. So table is dynamic to the number of records in the
-        //database
-        while ($DataBaseData < 10)
-        {
-            $DataBaseData = $DataBaseData + 1;
-            echo "<tr>";
-            //Subject
-            echo "<td>".$DataBaseData."</td>";
-            //Grade
-            echo "<td>".$DataBaseData."</td>";
-            //Comments
-            echo "<td>".$DataBaseData."</td>";
-            echo "</tr>";
-        }
+        studentGradesQuery($_SESSION['Login']);
         echo "</tbody>";
         echo "</table>";
 ?>

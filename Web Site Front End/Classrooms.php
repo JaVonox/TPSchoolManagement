@@ -55,7 +55,7 @@ PageCheck(array("Teacher","Staff"));
 <body>
 <div class="header">
 
-    <h1>Classrooms<a href="StaffHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
+    <h1>Classrooms<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
 	<?php include "PageElements/LoggedInBox.php"?>
 
