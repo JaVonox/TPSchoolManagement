@@ -9,28 +9,11 @@ isset($_GET['Focus']) ? $focusStudent = $_GET['Focus'] : $focusStudent="";
 <html lang="English">
 <head>
     <style>
+        <?php include "CSS/Header.css"?>
 
-        .buttonLogOut {
-            background-color: lightblue;
-            padding: 3px 8px;
-            margin-right: 100%;
-        }
-        .PersonDetails {
-            text-align: left;
-            font-size: 12px;
-        }
         body {
             margin: 0;
 
-        }
-        .header {
-            background-color: #4472C4;
-            padding: 20px;
-            text-align: center;
-        }
-        .button {
-            background-color: #4472C4;
-            padding: 8px 16px;
         }
         table.Rows {
             border: 1px solid #FFFFFF;
@@ -59,8 +42,8 @@ isset($_GET['Focus']) ? $focusStudent = $_GET['Focus'] : $focusStudent="";
 <body>
 <div class="header">
 
-    <h1>Student List<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
-
+    <h1>Student List</h1>
+    <a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a>
 	<?php include "PageElements/LoggedInBox.php"?>
 
 </div>

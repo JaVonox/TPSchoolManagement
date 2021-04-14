@@ -3,7 +3,9 @@
 PageCheck(array("Teacher"));
 ?>
 <head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <style>
+    <?php include "CSS/Header.css"?>
   .buttonLogOut
         {
             background-color: lightblue;
@@ -23,17 +25,17 @@ body
         {
             font-size: 150%;
         }
-.header
-        {
-            background-color: #4472C4;
-            padding: 20px;
-            text-align: center;
-        }
+
 .dropdownClass
         {
             border: 1px solid blue;
             background: #4472C4;
             width: 70%;
+            color: white;
+        }
+.dropdownClass a
+        {
+            text-decoration: none;
             color: white;
         }
 .dropdownElement
@@ -48,6 +50,11 @@ body
             width: 200px;
             color: white;
             text-align: center;
+        }
+.dropdownElementEdit a
+        {
+            text-decoration: none;
+            color: white;
         }
 
 .expand {
@@ -79,8 +86,8 @@ body
 
   <div class="header">
 
-    <h1>Student Grades<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
-
+    <h1>Student Grades</h1>
+    <a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a>
 	<?php include "PageElements/LoggedInBox.php"?>
   </div>
 

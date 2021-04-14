@@ -4,7 +4,7 @@ $interHandler = new UserInteractionHandler();
 
 $userStats = $interHandler->PullLoggedinBar($_SESSION['Login'],$_SESSION['Type']);
 ?>
-<div style="background-color:white;width:max-content;">
+<div style="display: inline-block; float: left; ">
 <p class="PersonDetails"><?php echo $userStats['Name']?></p>
 <p class="PersonDetails"><?php echo $userStats['Role']?></p>
 <p class="PersonDetails"><?php echo $userStats['UserGroup']?></p>

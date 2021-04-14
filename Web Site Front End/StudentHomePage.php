@@ -5,44 +5,36 @@ PageCheck(array("Student"));
 <html>
 <head>
     <style>
+        <?php include "CSS/Header.css"?>
         .button {
             background-color: #4472C4;
+            border-radius: 25px;
             color: white;
-            padding: 40px 50px;
+            padding: 55px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 16px;
+            font-size: 17px;
             margin: 5%;
             cursor: pointer;
+            font-family: Lato, sans-serif;
+            width: 8%;
         }
-        .header {
-            background-color: #4472C4;
-            padding: 20px;
-            text-align: center;
-        }
+
         body {
             margin: 0;
-        }
-        .PersonDetails {
-            text-align: left;
-            font-size: 12px;
         }
         .buttonCenter {
             margin:0 auto;
         }
-        .buttonLogOut {
-            background-color: lightblue;
-            padding: 3px 8px;
-            margin-right: 100%;
-        }
+
     </style>
 </head>
 <body>
 <div class="header">
 
-    <h1>Student Home Page<a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
-
+    <h1>Student Home Page</h1>
+    <a href="StudentHomePage.php"><img style="float: right;" src=Picture2.png></a>
 	<?php include "PageElements/LoggedInBox.php"?>
 
 </div>

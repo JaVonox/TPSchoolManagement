@@ -5,23 +5,9 @@ PageCheck(array("Teacher"));
 <html lang="English">
 <head>
     <style>
-        .header {
-            background-color: #4472C4;
-            padding: 20px;
-            text-align: center;
-        }
-
+        <?php include "CSS/Header.css"?>
         body {
             margin: 0;
-        }
-        .buttonLogOut {
-            background-color: lightblue;
-            padding: 3px 8px;
-            margin-right: 100%;
-        }
-        .PersonDetails {
-            text-align: left;
-            font-size: 12px;
         }
         .CreditTotal {
             height:50px;
@@ -41,10 +27,19 @@ PageCheck(array("Teacher"));
         }
         .button {
             background-color: #4472C4;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+            cursor: pointer;
+            font-family: Lato, sans-serif;
             padding: 8px 16px;
+            border-style: hidden;
         }
         .CreditTopUp {
-            margin-left: 70%;
+            margin-left: 80%;
             margin-top: 1%;
         }
     </style>
@@ -52,8 +47,8 @@ PageCheck(array("Teacher"));
 <body>
 <div class="header">
 
-    <h1>Credit Balance<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
-
+    <h1>Credit Balance</h1>
+    <a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a>
 	<?php include "PageElements/LoggedInBox.php"?>
 
 </div>
@@ -79,8 +74,8 @@ PageCheck(array("Teacher"));
 
 <form Name ="form" Method ="POST" ACTION = "TeacherCreditBalance.php" class="CreditTopUp">
     <!---Button and input box to top up their credit total--->
-    <input Name="newbalance" style="margin-right: 1%; padding: 8px" type = "text">
-    <input type = "submit" value = "Top up" Name= "Top Up" class ="button" >
+    <input Name="newbalance" placeholder="Amount to add" style="padding: 8px" type = "text"/>
+    <input type = "submit" value = "Top up" Name= "Top Up" class ="button"/>
 	<?php echo "<p>". $topup . "</p>"; ?>
 </form>
 
@@ -92,7 +87,7 @@ PageCheck(array("Teacher"));
         {
             echo "<span class='LinesUnderText'>";
             echo "<label style='font-size: 25px; '>".$transactions[$i]['Date_Of_Transaction']."</label>";
-            echo "<label style='float:right; margin-right: 60%; font-size: 25px'>£".$transactions[$i]['Transaction_Value']."</label></span>";
+            echo "<label style='padding-left: 500px; font-size: 25px'>£".$transactions[$i]['Transaction_Value']."</label></span>";
             echo "<br>";
             echo "<br>";
             echo "</span>";

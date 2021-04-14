@@ -1,0 +1,56 @@
+.header {
+    text-align: justify;
+    padding: 1em;
+    background: #4472C4;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    font-family: Lato, sans-serif;
+}
+
+.header::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+
+.header h1,
+header a  {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.header h1 {
+    width: 50%;
+    text-align: right;
+    padding-top: 0.5em;
+    font-family: Raleway, sans-serif;
+}
+
+.header a {
+    padding-top: 1em;
+}
+.buttonLogOut {
+    background-color: lightskyblue;
+    padding: 3px 8px;
+    border-radius: 5px;
+    border-style: hidden;
+    font-family: Raleway, sans-serif;
+    font-weight: bold;
+}
+.PersonDetails {
+    text-align: left;
+    font-size: 12px;
+}
+.button {
+    background-color: #4472C4;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    cursor: pointer;
+    font-family: Lato, sans-serif;
+    padding: 8px 16px;
+    border-style: hidden;
+}
