@@ -45,7 +45,7 @@
 		}
 		else
 		{
-			$query = "SELECT Class_ID
+			$query = "SELECT DISTINCT Class_ID
                       FROM Lesson, Person
                       WHERE Staff_Person_ID = ? AND Staff_Person_ID = Person.Person_ID;";
 			$statement = $connection->prepare($query);
@@ -63,7 +63,6 @@
 			while($statement->fetch())
 			{
 				$Class_IDs[] = $Class_ID;
-				echo "<p>".$Class_ID."</p>";
 			}
 			$statement->close();
 			for($i = 0; $i < count($Class_IDs); $i++)
@@ -80,7 +79,6 @@
 				while($statement2->fetch())
 				{
 					$Class_Names[] = $Class_Name;
-					echo"<p>".$Class_Name."</p>";
 				}
 		    }
 			$statement2->close();
@@ -99,7 +97,6 @@
 				while($statement3->fetch())
 				{
 					$Student_Names[$Total_Count + $Current_Count] = $First_Name." ".$Last_Name;
-					echo "<p>".$First_Name." ".$Last_Name."</p>";
 					$Current_Count++;
 				}
 				$Total_Count = $Total_Count + $Current_Count;
