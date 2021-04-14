@@ -1,9 +1,10 @@
 <?php 
-    require "dbinfo.php";
 	
 	function studentGradesQuery($student_id)
 	{
-		$connection = new mysqli(getdbserver(), getdbusername(), getdbpassword(), getdbdatabase());
+		require "Scripts/dbinfo.php";
+			
+		$connection = new mysqli($dbserver, $dbusername, $dbpassword, $dbdatabase);
 		if($connection->connect_error)
 		{
 			echo "<p>Failed to connect to database</p>";
@@ -35,7 +36,9 @@
 	
 	function findClassesQuery($person_id)
 	{
-		$connection = new mysqli(getdbserver(), getdbusername(), getdbpassword(), getdbdatabase());
+	    require "Scripts/dbinfo.php";
+		
+		$connection = new mysqli($dbserver, $dbusername, $dbpassword, $dbdatabase);
 		if($connection->connect_error)
 		{
 			echo "<p>Failed to connect to database.</p>";
@@ -126,8 +129,10 @@
 	
 	function findStudentAssessments($person_id)
 	{
+		require "Scripts/dbinfo.php";
+			
 		$ASSOCIATIVE_ARRAY = array();
-		$connection = new mysqli(getdbserver(), getdbusername(), getdbpassword(), getdbdatabase());
+		$connection = new mysqli($dbserver, $dbusername, $dbpassword, $dbdatabase);
 		if($connection->connect_error)
 		{
 			echo "<p>Failed to connect to database.</p>";

@@ -1,8 +1,11 @@
 <?php 
     require "Scripts/GradesAndAssessmentsService.php";
-	require "Scripts/PageAccessVerify.php"
-    PageCheck(array($_SESSION['Type']));
-	$info = PullTeacherDetails($_SESSION['Login'], $_SESSION['Type']);
+	require "Scripts/PageAccessVerify.php";
+	require "Scripts/PullUserData.php";
+	
+    PageCheck(array("Teacher"));
+	$dataGetter = new UserInteractionHandler();
+	$info = $dataGetter->PullTeacherDetails($_SESSION['Login'], $_SESSION['Type']);
 ?>
 
 <!DOCTYPE HTML>

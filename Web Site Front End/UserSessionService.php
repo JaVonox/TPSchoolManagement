@@ -21,7 +21,7 @@
 	}
 	else
 	{
-		$connection = new mysqli(getdbserver(), getdbusername(), getdbpassword(), getdbdatabase());
+		$connection = new mysqli($dbserver, $dbusername, $dbpassword, $dbdatabase);
 		
 		if($connection->connect_error)
 		{

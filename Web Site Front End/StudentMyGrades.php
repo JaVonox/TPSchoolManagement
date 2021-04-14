@@ -2,8 +2,11 @@
     require "Scripts/PageAccessVerify.php";
     require "Scripts/GradesAndAssessmentsService.php";
     require "Scripts/PullUserData.php";
-	PageCheck(array($_SESSION['Type']));
-	$info = PullStudentDetails($_SESSION['Login'], $_SESSION['Type']);
+	
+	PageCheck(array("Student"));
+	
+	$dataGetter = new UserInteractionHandler();
+	$info = $dataGetter->PullStudentDetails($_SESSION['Login'], $_SESSION['Type']);
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +101,7 @@
     </thead>
     <tbody>
 <?php
-        studentGradesQuery($_SESSION['Person_ID']);
+        studentGradesQuery($_SESSION['Login']);
         echo "</tbody>";
         echo "</table>";
 ?>

@@ -2,7 +2,7 @@
     require "Scripts/PageAccessVerify.php";
     require "Scripts/dbinfo.php";
 	require "Scripts/PullUserData.php";
-	PageCheck(array($_SESSION['Type']));
+	PageCheck(array("Teacher"));
 ?>
 <!DOCTYPE html>
 <html lang="English">
@@ -86,7 +86,7 @@
     </thead>
     <tbody>
     <?php
-    $connection = new mysqli(getdbserver(), getdbusername(), getdbpassword(), getdbdatabase());
+    $connection = new mysqli($dbserver, $dbusername, $dbpassword, $dbdatabase);
 	
 	if($connection->connect_error)
 	{

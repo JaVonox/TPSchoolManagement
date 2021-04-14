@@ -7,7 +7,7 @@ class UserInteractionHandler
 	
 	function __Construct()
 	{
-		require "dbinfo.php"; //pull database info
+		require "Scripts/dbinfo.php"; //pull database info
 		
 		$conn = new mysqli($dbserver, $dbusername, $dbpassword, $dbdatabase);
 		if($conn->connect_error) 
