@@ -4,4 +4,3 @@ $dbusername = "root";
 $dbpassword = "";
 $dbdatabase = "teamproject";
 ?>
-

@@ -43,6 +43,7 @@ PageCheck(array("Teacher","Staff"));
     <h1>Classrooms</h1>
     <a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a>
 
+
 	<?php include "PageElements/LoggedInBox.php"?>
 
 </div>

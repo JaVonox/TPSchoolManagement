@@ -3,7 +3,7 @@
 
 <?php
    session_start();
-   require "dbinfo.php"
+   require "Scripts/dbinfo.php"
 ?>
 
 
