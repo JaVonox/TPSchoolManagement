@@ -1,6 +1,8 @@
 <?php 
-    require "GradesAndAssessmentsService.php";
-	session_start();
+    require "Scripts/GradesAndAssessmentsService.php";
+	require "Scripts/PageAccessVerify.php"
+    PageCheck(array($_SESSION['Type']));
+	$info = PullTeacherDetails($_SESSION['Login'], $_SESSION['Type']);
 ?>
 
 <!DOCTYPE HTML>
@@ -84,8 +86,8 @@ body
 
     <h1>Student Grades<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
 
-    <p class="PersonDetails">Person_Name</p>
-    <p class="PersonDetails">Head of English Department</p>
+    <p class="PersonDetails"><?php echo $info['Name']; ?></p>
+    <p class="PersonDetails"><?php if($info['Leading'] == "no department"){ echo "Member of ".$info['Department']; }else{ echo "Head of ".$info['Department']; } ?></p>
     <p class="PersonDetails">Teacher</p>
     <a href="login.php"><button class ="buttonLogOut" >LogOut</button></a>
   </div>
@@ -95,7 +97,7 @@ body
 <div class = sizeof>
 
 <div id ="dropdown">
-    <?php findClassesQuery($_SESSION['Person_ID']); ?>
+    <?php findClassesQuery($_SESSION['Login']); ?>
 </div>
 
 </div>

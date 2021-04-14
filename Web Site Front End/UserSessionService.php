@@ -36,7 +36,7 @@
 			$statement->bind_param('s', $_POST["username"]);
 			$statement->execute();
 			$statement->store_result();
-			$statement->bind_result($_SESSION["Person_ID"], $_SESSION["First_Name"], $_SESSION["Last_Name"], $_SESSION["Role"]);
+			$statement->bind_result($_SESSION["Person_ID"], $_SESSION["First_Name"], $_SESSION["Last_Name"], $_SESSION["Type"]);
             
 			while($statement->fetch())
 			{
@@ -46,7 +46,7 @@
 			}
 			$statement->close();
 			
-			if($_SESSION["Role"] == "Student")
+			if($_SESSION["Type"] == "Student")
 			{
 				$query = "select Class_Name
 				          from Class, Student
@@ -65,7 +65,7 @@
 			<?php
 			    
 			}
-			else if($_SESSION["Role"] == "Teacher")
+			else if($_SESSION["Type"] == "Teacher")
 			{
 				?><a href="TeacherHomePage.php">Continue</a>
 			<?php
