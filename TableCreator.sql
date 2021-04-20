@@ -118,9 +118,10 @@ FOREIGN KEY (Subject_ID) references Subject(Subject_ID)
 
 CREATE TABLE Student_In_Lesson( /*Many to one with lesson, Many to one with Student*/
 /* Buffer table for many to many student and lesson table */
-Student_ID int PRIMARY KEY,
+Student_ID int NOT NULL,
 Lesson_ID int NOT NULL,
 IsPresent Boolean NOT NULL,
+PRIMARY KEY (Student_ID, Lesson_ID),
 FOREIGN KEY (Lesson_ID) references Lesson(Lesson_ID),
 FOREIGN KEY (Student_ID) references Student(Person_ID)
 );
