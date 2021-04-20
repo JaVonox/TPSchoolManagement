@@ -9,15 +9,29 @@ $timelineInfo = $dataGetter->PullLessonsTimeForTeacher($_SESSION['Login']);
 <html lang="English">
 <head>
     <style>
-        .header {
+        <?php include "CSS/Header.css"?>
+        .button {
             background-color: #4472C4;
-            padding: 20px;
+            border-radius: 25px;
+            color: white;
+            padding: 55px;
             text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+            margin: 5%;
+            cursor: pointer;
+            font-family: Lato, sans-serif;
+            width: 8%;
         }
 
         body {
             margin: 0;
         }
+        .buttonCenter {
+            margin:0 auto;
+        }
+
 
 		table, th, td {
 		  border: 1px solid black;
@@ -27,29 +41,14 @@ $timelineInfo = $dataGetter->PullLessonsTimeForTeacher($_SESSION['Login']);
 			min-width:64px;
 			height:64px;
 		}
-		
-		body {
-            margin: 0;
-        }
-        .PersonDetails {
-            text-align: left;
-            font-size: 12px;
-        }
-        .buttonCenter {
-            margin:0 auto;
-        }
-        .buttonLogOut {
-            background-color: lightblue;
-            padding: 3px 8px;
-            margin-right: 100%;
-        }
+
     </style>
 </head>
 <body>
 <div class="header">
 
-    <h1>My Timetable<a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a></h1>
-
+    <h1>My Timetable</h1>
+    <a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a>
 	<?php include "PageElements/LoggedInBox.php"?>
 
 </div>

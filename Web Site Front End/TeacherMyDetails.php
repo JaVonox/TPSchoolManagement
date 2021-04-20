@@ -29,7 +29,7 @@ PageCheck(array("Teacher"));
         .LinesUnderText {
             height:50px;
             border-bottom: 1px solid cornflowerblue;
-            padding-bottom: 5px;
+            padding-bottom: 1px;
         }
     </style>
 </head>
