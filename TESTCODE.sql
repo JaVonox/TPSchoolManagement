@@ -488,3 +488,259 @@ UPDATE Staff
 SET LeaderOf = 10
 WHERE Person_ID = 229;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+--Patch to fix foreign keys:
+--Run the following code in PHPMyAdmin and everything should be good!
+--This adds test data for.
+
+--Delete bad data.
+DELETE FROM student_in_lesson;
+DELETE FROM assessment_grade;
+DELETE FROM subject_grade;
+DELETE FROM lesson;
+
+
+--Detail 
+INSERT INTO `Subject_Grade` (`Subject_ID`,`Student_ID`,`CurrentYear`,`Grade`,`Feedback`) VALUES 
+(1,1,11,"6","Well written! Great spelling."),
+(2,1,11,"4","Sewing not very good. Designs and written work good quality."),
+(3,1,11,"4","Great map work. Need to revise case studies."),
+(4,1,11,"8","Brilliant final project. Great use of colour."),
+(5,1,11,"4","Practise fractions."),
+(6,1,11,"6","Please practise forces and vectors."),
+(7,1,11,"5","Great listening and writing- practise pronunciation."),
+(8,1,11,"4","No comment."),
+(9,1,11,"4","Good work. Practise the case studies."),
+(10,1,11,"1","Revise arguements/teachings."),
+(14,1,11,"4","Please practise PHP to access higher marks. Good job overall!"),
+(13,1,11,"5","Great use of diagrams.");
+
+INSERT INTO `Subject_Grade` (`Subject_ID`,`Student_ID`,`CurrentYear`,`Grade`,`Feedback`) VALUES 
+(1,2,10,"8","Improve analysis skills to access higher marks- see assessment details."),
+(2,2,10,"7","Great designs."),
+(3,2,10,"7","Work on timing."),
+(11,2,10,"8","Improve performance skills."),
+(15,2,10,"9","Great work- keep this up!"),
+(5,2,10,"5","Practise algebra!");
+
+update assessment set Assessment_Name = "Chapter analysis" where Assessment_ID = 9;
+update assessment set Assessment_Name = "Food Tech Coursework" where Assessment_ID = 19;
+update assessment set Assessment_Name = "Rivers and Erosion Presentation" where Assessment_ID = 29;
+update assessment set Assessment_Name = "History of Art" where Assessment_ID = 39;
+update assessment set Assessment_Name = "Representing Data Coursework" where Assessment_ID = 49;
+update assessment set Assessment_Name = "Physics Experiment Diary" where Assessment_ID = 59;
+update assessment set Assessment_Name = "French Report- my holidays" where Assessment_ID = 69;
+update assessment set Assessment_Name = "Teamwork assay" where Assessment_ID = 79;
+update assessment set Assessment_Name = "WW2 Presentation" where Assessment_ID = 89;
+update assessment set Assessment_Name = "RS written Report" where Assessment_ID = 99;
+update assessment set Assessment_Name = "Final Presentation" where Assessment_ID = 109;
+update assessment set Assessment_Name = "Elements Presentation" where Assessment_ID = 119;
+update assessment set Assessment_Name = "Reproduction Presentation" where Assessment_ID = 129;
+update assessment set Assessment_Name = "Programming a web app essay" where Assessment_ID = 139;
+update assessment set Assessment_Name = "Spanish Verbs essay" where Assessment_ID = 149;
+
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 9;
+update assessment set Teacher_Comments = "Remember to bring your recipes and equipment!" where Assessment_ID = 19;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 29;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 39;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 49;
+update assessment set Teacher_Comments = "You are to hand in your diaries, and they must be updated with all 17 experiments." where Assessment_ID = 59;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 69;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 79;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 89;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 99;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 109;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 119;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 129;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 139;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 149;
+
+
+update assessment set Assessment_Name = "Chapter analysis" where Assessment_ID = 7;
+update assessment set Assessment_Name = "Food Tech Coursework" where Assessment_ID = 17;
+update assessment set Assessment_Name = "Sustainability Presentation" where Assessment_ID = 27;
+update assessment set Assessment_Name = "History of Art" where Assessment_ID = 37;
+update assessment set Assessment_Name = "Representing Data Coursework" where Assessment_ID = 47;
+update assessment set Assessment_Name = "Physics Experiment Diary" where Assessment_ID = 57;
+update assessment set Assessment_Name = "French Report- my holidays" where Assessment_ID = 67;
+update assessment set Assessment_Name = "Teamwork assay" where Assessment_ID = 77;
+update assessment set Assessment_Name = "WW2 Presentation" where Assessment_ID = 87;
+update assessment set Assessment_Name = "RS written Report" where Assessment_ID = 97;
+update assessment set Assessment_Name = "Final Presentation" where Assessment_ID = 107;
+update assessment set Assessment_Name = "Catalysts Presentation" where Assessment_ID = 117;
+update assessment set Assessment_Name = "Reproduction Presentation" where Assessment_ID = 127;
+update assessment set Assessment_Name = "Creating a database essay" where Assessment_ID = 137;
+update assessment set Assessment_Name = "Spanish Nouns essay" where Assessment_ID = 147;
+
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 7;
+update assessment set Teacher_Comments = "Remember to bring your recipes and equipment!" where Assessment_ID = 17;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 27;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 37;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 47;
+update assessment set Teacher_Comments = "You are to hand in your diaries, and they must be updated with all 17 experiments." where Assessment_ID = 57;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 67;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 77;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 87;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 97;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 107;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 117;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 127;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 137;
+update assessment set Teacher_Comments = "No notes" where Assessment_ID = 147;
+
+
+
+--ADD ASSESSMENT GRADES FOR STUDENT 1 AND 2
+INSERT INTO `Assessment_Grade` (`Assessment_ID`,`Student_ID`,`Grade`,`Feedback`) VALUES 
+(9,1,"6","Very well done!"),
+(19,1,"4","Needs Improvement."),
+(29,1,"3","Great confidence and clear voice, but subject matter incorrect."),
+(39,1,"6","Well presented."),
+(49,1,"6","No comments."),
+(59,1,"7","No comments."),
+(69,1,"6","Good work."),
+(79,1,"8","No comments."),
+(89,1,"7","Well researched."),
+(99,1,"7","Good job!"),
+(109,1,"5","Good presentation- work on timings, and slides could be clearer."),
+(119,1,"5","No comments."),
+(129,1,"6","No comments."),
+(139,1,"4","No comments."),
+(149,1,"7","Great verbs used!"),
+(7,2,"6","Very well done!"),
+(17,2,"6","Needs Improvement."),
+(27,2,"7","Requires more research."),
+(37,2,"6","Well presented- needs more detail."),
+(47,2,"8","No comments."),
+(57,2,"7","No comments."),
+(67,2,"8","Good work."),
+(77,2,"8","No comments."),
+(87,2,"9","Well researched."),
+(97,2,"7","Good job!"),
+(107,2,"8","Good presentation!"),
+(117,2,"5","No comments."),
+(127,2,"6","No comments."),
+(137,2,"8","No comments."),
+(147,2,"7","Great nouns used!");
+
+
+
+
+INSERT INTO `Lesson` (`Lesson_ID`,`Class_ID`,`Subject_ID`,`Classroom_ID`,`Lesson_Date`, `Staff_Person_ID`) VALUES 
+(1,9,1,1,"2021-04-26 9:00:00", 201),
+(2,9,2,2,"2021-04-26 10:00:00", 202),
+(3,9,3,3,"2021-04-26 11:00:00", 203),
+(4,9,4,4,"2021-04-26 13:00:00", 215),
+(5,9,6,5,"2021-04-26 14:00:00", 201),
+(6,9,5,6,"2021-04-27 9:00:00", 205),
+(7,9,6,7,"2021-04-27 10:00:00", 207),
+(8,9,1,8,"2021-04-27 11:00:00", 201),
+(9,9,2,9,"2021-04-27 13:00:00", 202),
+(10,9,15,10,"2021-04-27 14:00:00", 201),
+(11,9,5,11,"2021-04-28 9:00:00", 206),
+(12,9,10,12,"2021-04-28 10:00:00", 211),
+(13,9,1,13,"2021-04-28 11:00:00", 201),
+(14,9,8,14,"2021-04-28 13:00:00", 209),
+(15,9,6,15,"2021-04-28 14:00:00", 207),
+(16,9,3,16,"2021-04-29 9:00:00", 203),
+(17,9,5,17,"2021-04-29 10:00:00", 206),
+(18,9,9,18,"2021-04-29 11:00:00", 210),
+(19,9,11,19,"2021-04-29 13:00:00", 212),
+(20,9,14,20,"2021-04-29 14:00:00", 217),
+(21,9,12,1,"2021-04-30 9:00:00", 214),
+(22,9,13,2,"2021-04-30 10:00:00", 213),
+(23,9,7,3,"2021-04-30 11:00:00", 209),
+(24,9,4,4,"2021-04-30 13:00:00", 216),
+(25,9,6,5,"2021-04-30 14:00:00", 208),
+(26,7,4,5,"2021-04-26 9:00:00", 221),
+(27,7,2,6,"2021-04-26 10:00:00", 222),
+(28,7,3,7,"2021-04-26 11:00:00", 223),
+(29,7,1,8,"2021-04-26 13:00:00", 224),
+(30,7,6,9,"2021-04-26 14:00:00", 225),
+(31,7,5,10,"2021-04-27 9:00:00", 226),
+(32,7,6,11,"2021-04-27 10:00:00", 227),
+(33,7,1,11,"2021-04-27 11:00:00", 228),
+(34,7,15,12,"2021-04-27 13:00:00", 229),
+(35,7,15,13,"2021-04-27 14:00:00", 230),
+(36,7,5,14,"2021-04-28 9:00:00", 231),
+(37,7,10,15,"2021-04-28 10:00:00", 231),
+(38,7,1,16,"2021-04-28 11:00:00", 232),
+(39,7,8,17,"2021-04-28 13:00:00", 233),
+(40,7,6,18,"2021-04-28 14:00:00", 234),
+(41,7,3,19,"2021-04-29 9:00:00", 235),
+(42,7,13,20,"2021-04-29 10:00:00", 236),
+(43,7,9,1,"2021-04-29 11:00:00", 201),
+(44,7,11,2,"2021-04-29 13:00:00", 238),
+(45,7,14,3,"2021-04-29 14:00:00", 239),
+(46,7,12,4,"2021-04-30 9:00:00", 240),
+(47,7,13,5,"2021-04-30 10:00:00", 241),
+(48,7,7,6,"2021-04-30 11:00:00", 245),
+(49,7,4,18,"2021-04-30 13:00:00", 250),
+(50,7,6,20,"2021-04-30 14:00:00", 202);
+
+
+INSERT INTO `Student_In_Lesson` (`Student_ID`,`Lesson_ID`,`IsPresent`) VALUES 
+(1,1,"1"),
+(1,2,"0"),
+(1,3,"1"),
+(1,4,"1"),
+(1,5,"1"),
+(1,6,"1"),
+(1,7,"1"),
+(1,8,"1"),
+(1,9,"1"),
+(1,10,"1"),
+(1,11,"1"),
+(1,12,"1"),
+(1,13,"0"),
+(1,14,"0"),
+(1,15,"0"),
+(1,16,"0"),
+(1,17,"0"),
+(1,18,"0"),
+(1,19,"0"),
+(1,20,"0"),
+(1,21,"0"),
+(1,22,"0"),
+(1,23,"0"),
+(1,24,"0"),
+(1,25,"0"),
+(2,26,"1"),
+(2,27,"0"),
+(2,28,"1"),
+(2,29,"1"),
+(2,30,"1"),
+(2,31,"1"),
+(2,32,"1"),
+(2,33,"1"),
+(2,34,"1"),
+(2,35,"1"),
+(2,36,"1"),
+(2,37,"1"),
+(2,38,"0"),
+(2,39,"0"),
+(2,40,"0"),
+(2,41,"0"),
+(2,42,"0"),
+(2,43,"0"),
+(2,44,"0"),
+(2,45,"0"),
+(2,46,"0"),
+(2,47,"0"),
+(2,48,"0"),
+(2,49,"0"),
+(2,50,"0");
+
+
