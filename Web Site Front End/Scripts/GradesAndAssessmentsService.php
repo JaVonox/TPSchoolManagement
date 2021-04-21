@@ -11,21 +11,22 @@
 		}
 		else
 		{
-			$query = "select Subject_ID, Grade, Feedback
-			          from subject_grade
+			$query = "select Subject.Subject_Name, Grade, Feedback
+			          from subject_grade, subject
 					  where subject_grade.Student_ID = ?
-					  order by subject_ID DESC;";
+					  AND Subject_Grade.Subject_ID = Subject.Subject_ID
+					  order by Subject.subject_ID DESC;";
 			$statement = $connection->prepare($query);
 			$statement->bind_param('s', $student_id);
 			$statement->execute();
 			$statement->store_result();
-			$statement->bind_result($subject_id, $grade, $feedback);
+			$statement->bind_result($subject_Name, $grade, $feedback);
 		}
 		
 		while($statement->fetch())
 		{
 			echo "<tr>";
-			echo "<td>".$subject_id."</td>";
+			echo "<td>".$subject_Name."</td>";
 			echo "<td>".$grade."</td>";
 			echo "<td>".$feedback."</td>";
 			echo "</tr>";

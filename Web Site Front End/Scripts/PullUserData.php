@@ -137,7 +137,7 @@ class UserInteractionHandler
 	
 	function PullStudentsArray()
 	{
-		$result = $this->connectionData->query("SELECT person.Person_ID,person.First_Name,person.Last_Name,Class.Class_Year FROM person,class,student WHERE person.Person_ID = student.Person_ID AND student.Class_ID = class.Class_ID");
+		$result = $this->connectionData->query("SELECT person.Person_ID,person.First_Name,person.Last_Name,Class.Class_Year, Class.Class_Name FROM person,class,student WHERE person.Person_ID = student.Person_ID AND student.Class_ID = class.Class_ID");
 		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
 		return $dataSet;
 	}

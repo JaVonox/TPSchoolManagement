@@ -55,7 +55,7 @@ isset($_GET['Focus']) ? $focusStudent = $_GET['Focus'] : $focusStudent="";
         <th class="tableheading">Student ID</th>
         <th class="tableheading">Full Name</th>
         <th class="tableheading">Year</th>
-        <th class="tableheading">Optional Subjects</th>
+        <th class="tableheading">Class</th>
         <th><div class="InputBox">
                 <input id="myInput" onkeyup="SearchFunction()" placeholder="Search for names.." style=" padding: 8px" type = "text" value="<?php echo $focusStudent;?>">
                 <button class ="button">Search</button>
@@ -84,7 +84,7 @@ isset($_GET['Focus']) ? $focusStudent = $_GET['Focus'] : $focusStudent="";
         //Year
         echo "<td>".$studentsArray[$i]['Class_Year']."</td>";
         //Optional Subjects
-        echo "<td>TBA</td>";
+        echo "<td>".$studentsArray[$i]['Class_Name']."</td>";
 
         echo "</tr>";
 		$i++;

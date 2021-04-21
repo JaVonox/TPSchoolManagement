@@ -95,13 +95,17 @@
 ?>
 		 
 		 
-  <h2> School Management System </h2>
+  <h2> Welcome!</h2>
   <form action="index.php" method="POST">
 	  <div>Username: <input type = "text" name = "UserID" placeholder="ID"> </div>
 	  <br>
 	  <div>Password: <input type = "password" name = "Password" placeholder="Password"> </div>
 	  <br>
-	  <a href="passwordreset.php"><button class ="button" >Forgotten Password</button></a>   <!-- buttons nested between anchor tag, which is a hyperlink-->
+	  <button class = "button" class ="button" onclick="displayMessage()">Forgotten Password</button>   <!-- buttons nested between anchor tag, which is a hyperlink-->
+	  <script>
+	  function displayMessage()
+	  {alert("Please contact your school's administration team to change your password!");}
+	  </script>
 	  <input class = "button" type = "submit" name = "submit" value = "Login" >
   </form>
 </div>
