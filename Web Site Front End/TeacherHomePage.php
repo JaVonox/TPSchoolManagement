@@ -46,8 +46,8 @@ PageCheck(array("Teacher"));
     <a href="StudentList.php" class="button">Student List</a>
     <a href="TeacherCreditBalance.php" class="button">Credit Balance</a>
     <a href="TeacherStudentGrades.php" class="button">Student Grades</a>
-    <a href="Classrooms.php" class="button">Classroom</a>
-	<a href="TeacherTimetable.php" class="button">Timetable</a>
+    <a href="Classrooms.php" class="button">Classrooms</a>
+	<a href="TeacherTimetable.php" class="button">My Timetable</a>
 
 </div>
 
