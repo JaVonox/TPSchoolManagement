@@ -104,7 +104,7 @@ body
 
 	for($i=0;$i<count($classDetails);$i++) //Relies on class having atleast one member. Needs modifying to fix this problem.
 	{
-		echo '<a href="#nav' . $i .'"><div class="dropdownClass">Class ' . $classDetails[$i][0]['Class_ID'] . '</a></div>';
+		echo '<a href="#nav' . $i .'"><div class="dropdownClass">Class ' . $classDetails[$i][0]['Class_Name'] . '</a></div>';
 		echo '<div class="expand grid-item"  id="nav' . $i . '">';
 
 		for($j=0;$j<count($classDetails[$i]);$j++)

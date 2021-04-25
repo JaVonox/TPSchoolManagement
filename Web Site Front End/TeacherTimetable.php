@@ -155,8 +155,9 @@ function LoadTimeline(Iteration) //Iteration is the relative day (Monday To Sund
 
 function LoadDays()
 {
-	var dateDiff = currentDate.getDay() - 1;
-	
+	var dayOffset = [6,0,1,2,3,4,5]; //This is not the most effective solution but the time difference between this and a different method is likely nullable
+	var dateDiff = dayOffset[currentDate.getDay()]; //Sunday is considered 0. goes to 6 (Saturday)
+
 	var lastMondayDate = new Date(currentDate - (dateDiff * (1000*24*60*60)));
 	for(j=0;j<7;j++)
 	{

@@ -120,12 +120,12 @@ class UserInteractionHandler
 	{
 		$classes = array();
 		
-		$result = $this->connectionData->query("SELECT DISTINCT Class_ID FROM lesson WHERE Staff_Person_ID = " . $teacherID);
+		$result = $this->connectionData->query("SELECT DISTINCT lesson.Class_ID FROM lesson WHERE lesson.Staff_Person_ID = " . $teacherID);
 		$classIDArray = $result->fetch_all(MYSQLI_NUM);
 		
 		for($i=0;$i<count($classIDArray);$i++)
 		{
-			$result = $this->connectionData->query("SELECT student.Class_ID,student.Person_ID,person.First_Name,person.Last_Name FROM student RIGHT JOIN person ON student.Person_ID = person.Person_ID WHERE student.Class_ID = " . $classIDArray[$i][0]);
+			$result = $this->connectionData->query("SELECT student.Class_ID,student.Person_ID,person.First_Name,person.Last_Name,class.Class_Name FROM student RIGHT JOIN person ON student.Person_ID = person.Person_ID INNER JOIN class ON student.Class_ID = class.Class_ID WHERE student.Class_ID = " . $classIDArray[$i][0]);
 			$classInfo = $result->fetch_all(MYSQLI_ASSOC);
 		
 			$classes[$i] = $classInfo;
@@ -218,7 +218,7 @@ class UserInteractionHandler
 
 		$mondayDateFormat = date("Y-m-d 00:00:00", strtotime($mondayDateUnformat));
 		$nextBoundaryDateFormat = date("Y-m-d 00:00:00", strtotime($nextBoundaryDateUnformat));
-		
+
 		$result = $this->connectionData->query("SELECT subject.Subject_Name,classroom.Classroom_Location,classroom.Classroom_Name,lesson.Lesson_Date FROM lesson INNER JOIN subject ON lesson.Subject_ID = subject.Subject_ID INNER JOIN classroom ON lesson.Classroom_ID = classroom.Classroom_ID WHERE lesson.Class_ID = (SELECT student.Class_ID FROM student WHERE student.Person_ID = " . $id . ") AND (lesson.Lesson_Date BETWEEN '" . $mondayDateFormat . "' AND '" . $nextBoundaryDateFormat . "');");
 		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
 		

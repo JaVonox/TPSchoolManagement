@@ -101,12 +101,15 @@
 	  <br>
 	  <div>Password: <input type = "password" name = "Password" placeholder="Password"> </div>
 	  <br>
-	  <button class = "button" class ="button" onclick="displayMessage()">Forgotten Password</button>   <!-- buttons nested between anchor tag, which is a hyperlink-->
-	  <script>
-	  function displayMessage()
-	  {alert("Please contact your school's administration team to change your password!");}
-	  </script>
+	  <input class = "button" class ="button" onclick="displayMessage()" value="Forgotten Password"></input>   <!-- buttons nested between anchor tag, which is a hyperlink-->
 	  <input class = "button" type = "submit" name = "submit" value = "Login" >
   </form>
+  
+  <script>
+  function displayMessage()
+  {
+	alert("Please contact your school's administration team to change your password!");
+  }
+  </script>
 </div>
 </body>

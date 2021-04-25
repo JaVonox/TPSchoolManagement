@@ -58,6 +58,7 @@ PageCheck(array("Teacher"));
 	$id = $_SESSION['Login'];
 	$fetcher = new UserInteractionHandler();
 	$topup = "";
+	
 	if (isset($_POST['newbalance']))
 	{
 		$topup = $fetcher->AddToBalance($id, $_POST['newbalance']);

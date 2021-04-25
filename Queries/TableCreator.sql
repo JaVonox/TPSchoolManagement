@@ -78,7 +78,7 @@ CREATE TABLE Subject_Grade(
 CREATE TABLE Assessment(
 	Assessment_ID int PRIMARY KEY AUTO_INCREMENT,
 	Assessment_Type varchar(30) NOT NULL,
-	Assessment_Name varchar(30) NOT NULL,
+	Assessment_Name varchar(255) NOT NULL,
 	Subject_ID int NOT NULL,
 	Class_ID int NOT NULL,
 	Date_Assigned datetime NOT NULL,
@@ -110,7 +110,7 @@ Class_ID int NOT NULL,
 Subject_ID int NOT NULL,
 Classroom_ID int NOT NULL,
 Lesson_Date DATETIME NOT NULL, /* To allow for times to be implemented too */
-Staff_Person_ID int NOT NULL, /*Person_ID but just for staff*/
+Staff_Person_ID int, /*Person_ID but just for staff*/
 FOREIGN KEY (Class_ID) references Class(Class_ID),
 FOREIGN KEY (Classroom_ID) references Classroom(Classroom_ID),
 FOREIGN KEY (Subject_ID) references Subject(Subject_ID)
@@ -118,9 +118,10 @@ FOREIGN KEY (Subject_ID) references Subject(Subject_ID)
 
 CREATE TABLE Student_In_Lesson( /*Many to one with lesson, Many to one with Student*/
 /* Buffer table for many to many student and lesson table */
-Student_ID int PRIMARY KEY,
+Student_ID int NOT NULL,
 Lesson_ID int NOT NULL,
 IsPresent Boolean NOT NULL,
+PRIMARY KEY (Student_ID, Lesson_ID),
 FOREIGN KEY (Lesson_ID) references Lesson(Lesson_ID),
 FOREIGN KEY (Student_ID) references Student(Person_ID)
 );
