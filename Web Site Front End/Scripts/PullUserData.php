@@ -173,6 +173,22 @@ class UserInteractionHandler
 		$oldbal = $dataSet[0]['Balance'];
 		$newbal = $money + $oldbal;
 		$newdate = date('Y-m-d');
+		$newtime = date('Y-m-d H:i:s');
+		
+		//Insert transaction:
+		
+		$result = $this->connectionData->query("SELECT Max(Transaction_ID) FROM Transactions;");
+		$dataSet = $result->fetch_all(MYSQLI_ASSOC);
+		$HighestID = $dataSet[0]['Max(Transaction_ID)'];
+		$NewID = $HighestID + 1;
+		
+		$statement = $this->connectionData->prepare("INSERT INTO Transactions (Transaction_ID, Person_ID, Transaction_Value, Date_Of_Transaction) values (?, ?, ?, ?);");
+		$statement->bind_param('iids', $NewID, $id, $money, $newtime);
+		$result = $statement->execute();
+		if ($result == FALSE)
+		{
+			return "Sorry, this top up did not work.";
+		}
 		
 		//UPDATE BALANCE
 		$result = $this->connectionData->query("UPDATE Credit set Balance = ". $newbal . ", Last_Top_Up = \"" . $newdate . "\" WHERE Person_ID = ". $id . ";");
@@ -184,7 +200,6 @@ class UserInteractionHandler
 		{
 			return "Top up successful!";
 		}
-		return $info;
 	}
 	
 	function PullLessonsTimeForTeacher($id) //Used to get the 7 days info. (Teacher)
