@@ -101,7 +101,7 @@
 	  <br>
 	  <div>Password: <input type = "password" name = "Password" placeholder="Password"> </div>
 	  <br>
-	  <input class = "button" class ="button" onclick="displayMessage()" value="Forgotten Password"></input>   <!-- buttons nested between anchor tag, which is a hyperlink-->
+	  <input class = "button" type ="button" onclick="displayMessage()" value="Forgotten Password"></input>   <!-- buttons nested between anchor tag, which is a hyperlink-->
 	  <input class = "button" type = "submit" name = "submit" value = "Login" >
   </form>
   
