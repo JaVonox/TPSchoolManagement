@@ -11,21 +11,22 @@
 		}
 		else
 		{
-			$query = "select Subject_ID, Grade, Feedback
-			          from subject_grade
+			$query = "select Subject.Subject_Name, Grade, Feedback
+			          from subject_grade, subject
 					  where subject_grade.Student_ID = ?
-					  order by subject_ID DESC;";
+					  AND Subject_Grade.Subject_ID = Subject.Subject_ID
+					  order by Subject.subject_ID DESC;";
 			$statement = $connection->prepare($query);
 			$statement->bind_param('s', $student_id);
 			$statement->execute();
 			$statement->store_result();
-			$statement->bind_result($subject_id, $grade, $feedback);
+			$statement->bind_result($subject_Name, $grade, $feedback);
 		}
 		
 		while($statement->fetch())
 		{
 			echo "<tr>";
-			echo "<td>".$subject_id."</td>";
+			echo "<td>".$subject_Name."</td>";
 			echo "<td>".$grade."</td>";
 			echo "<td>".$feedback."</td>";
 			echo "</tr>";
@@ -112,7 +113,7 @@
 				for($j = $Index_Positions[$i]; $j < $Index_Positions[$i + 1]; $j++)
 				{
 					?><div class="dropdownElement"><?php echo $Student_Names[$j]; ?></div>
-					<div class="dropdownElementEdit"><a href="TeacherEditGrades.php">Edit Grade</a></div>
+					<div class="dropdownElementEdit"><a href="TeacherEditGrades.php?Name=<?php echo $Student_Names[$j]; ?>&Class=<?php echo $Class_IDs[$i]; ?>">Edit Grade</a></div>
 					<?php
 				}
 				?>
@@ -220,5 +221,101 @@
                 echo "</tr>";
 			}
 		}
+	}
+	
+	function findStudentSubjectGrades($first_name, $last_name, $updateFirst, $value)
+	{
+		require "Scripts/dbinfo.php";
+		
+		$connection = new mysqli($dbserver, $dbusername, $dbpassword, $dbdatabase);
+		$Associative = array();
+		
+		if($connection->connect_error)
+		{
+			echo "<p>Failed to connect to database</p>";
+		}
+		else
+		{   
+			$query = "SELECT DISTINCT subject_grade.Grade, subject_grade.subject_ID
+			          FROM subject_grade
+					  WHERE Student_ID = ?;";
+					  
+		    $query2 = "SELECT DISTINCT subject.Subject_Name, subject.Level
+			           FROM subject
+					   WHERE Subject_ID = ?;";
+					   
+			$query3 = "SELECT DISTINCT person.Person_ID
+			           From person
+					   WHERE First_Name = ? AND Last_Name = ?;";
+					   
+		    $statement = $connection->prepare($query3);
+			$statement->bind_param("ss", $first_name, $last_name);
+			$statement->execute();
+			$statement->store_result();
+			$statement->bind_result($person_id);
+			$student_id;
+			
+			while($statement->fetch())
+			{
+				$student_id = $person_id;
+			}
+			$statement->close();
+			
+			if($updateFirst == true)
+			{
+				$updateQuery = "UPDATE subject_grade
+				                SET Grade = ?
+								WHERE Student_ID = ?;";
+				$statement = $connection->prepare($updateQuery);
+				$statement->bind_param("ss", $value, $student_id);
+				$statement->execute();
+				$statement->close();
+			}
+			
+			$statement = $connection->prepare($query);
+			$statement->bind_param("s", $student_id);
+			$statement->execute();
+			$statement->store_result();
+			$statement->bind_result($subjectGrade, $subjectID);
+			
+			$i = 0;
+			while($statement->fetch())
+			{
+				$Associative["subjectGrade"][$i] = $subjectGrade;
+				$Associative["subjectID"][$i] = $subjectID;
+				$i++;
+			}
+			
+			$statement->close();
+			
+			for($i = 0; $i < count($Associative["subjectID"]); $i++)
+			{
+				$statement = $connection->prepare($query2);
+				$statement->bind_param("s", $Associative["subjectID"][$i]);
+				$statement->execute();
+				$statement->store_result();
+				$statement->bind_result($subjectName, $level);
+				
+				while($statement->fetch())
+				{
+					$Associative["subjectName"][$i] = $subjectName;
+					$Associative["level"][$i] = $level;
+				}
+			    $statement->close();
+			}
+			
+			for($i = 0; $i < count($Associative["subjectID"]); $i++)
+			{
+				echo "<tr>";
+				//Subject Name
+				echo "<td>".$Associative["subjectName"][$i]."</td>";
+				//Level
+				echo "<td>".$Associative["level"][$i]."</td>";
+				//Grade
+				echo "<td>"."<input type='text' id='gradeBox' name='gradeBox' value='".$Associative["subjectGrade"][$i]."'>"."</td>";
+				echo "</tr>";
+			}
+		}
+		$connection->close();
 	}
 ?>
