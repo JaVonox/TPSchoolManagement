@@ -222,8 +222,7 @@
 			}
 		}
 	}
-	
-	function findStudentSubjectGrades($first_name, $last_name, $updateFirst, $value)
+	function updateSubjectGrades($first, $second, $Subject, $grade)
 	{
 		require "Scripts/dbinfo.php";
 		
@@ -236,86 +235,57 @@
 		}
 		else
 		{   
-			$query = "SELECT DISTINCT subject_grade.Grade, subject_grade.subject_ID
-			          FROM subject_grade
-					  WHERE Student_ID = ?;";
-					  
-		    $query2 = "SELECT DISTINCT subject.Subject_Name, subject.Level
-			           FROM subject
-					   WHERE Subject_ID = ?;";
-					   
-			$query3 = "SELECT DISTINCT person.Person_ID
-			           From person
-					   WHERE First_Name = ? AND Last_Name = ?;";
-					   
-		    $statement = $connection->prepare($query3);
-			$statement->bind_param("ss", $first_name, $last_name);
-			$statement->execute();
-			$statement->store_result();
-			$statement->bind_result($person_id);
-			$student_id;
-			
-			while($statement->fetch())
-			{
-				$student_id = $person_id;
-			}
+			$updateQuery = "UPDATE subject_grade
+				            SET Grade = ?
+							WHERE Student_ID = (SELECT Person_ID FROM Person WHERE First_Name = ? AND Last_Name = ?)
+							AND Subject_ID = ?;";
+							
+		    $statement = $connection->prepare($updateQuery);
+			$statement->bind_param("issi", $grade, $first, $second, $Subject);
+			$result = $statement->execute();
+			if ($result == FALSE)
+				{
+					echo "<p>There has been an error</p>";
+				}
 			$statement->close();
-			
-			if($updateFirst == true)
-			{
-				$updateQuery = "UPDATE subject_grade
-				                SET Grade = ?
-								WHERE Student_ID = ?;";
-				$statement = $connection->prepare($updateQuery);
-				$statement->bind_param("ss", $value, $student_id);
-				$statement->execute();
-				$statement->close();
-			}
-			
-			$statement = $connection->prepare($query);
-			$statement->bind_param("s", $student_id);
+			$connection->close();
+		}
+	}
+	
+	function GetGrades($first, $second)
+	{
+		require "Scripts/dbinfo.php";
+		
+		$connection = new mysqli($dbserver, $dbusername, $dbpassword, $dbdatabase);
+		$Associative = array();
+		
+		if($connection->connect_error)
+		{
+			echo "<p>Failed to connect to database</p>";
+		}
+		else
+		{   
+			$Associative = array();
+		    $statement = $connection->prepare("SELECT subject_grade.Grade, subject.Subject_ID, subject.Subject_Name, subject.Level, subject.Number_Of_Exams
+					FROM subject_grade, Subject
+					WHERE Subject_grade.Student_ID = (SELECT Person_ID FROM Person WHERE First_Name = ? AND Last_Name = ?)
+					AND subject.Subject_ID = subject_grade.Subject_ID;");
+			$statement->bind_param("ss", $first, $second);
 			$statement->execute();
 			$statement->store_result();
-			$statement->bind_result($subjectGrade, $subjectID);
-			
+			$statement->bind_result($grade, $subid, $name, $level, $exams);
 			$i = 0;
 			while($statement->fetch())
 			{
-				$Associative["subjectGrade"][$i] = $subjectGrade;
-				$Associative["subjectID"][$i] = $subjectID;
+				$Associative["Name"][$i] = $name;
+				$Associative["Grade"][$i] = $grade;
+				$Associative["SubjectID"][$i] = $subid;
+				$Associative["Level"][$i] = $level;
+				$Associative["Exams"][$i] = $exams;
 				$i++;
-			}
-			
-			$statement->close();
-			
-			for($i = 0; $i < count($Associative["subjectID"]); $i++)
-			{
-				$statement = $connection->prepare($query2);
-				$statement->bind_param("s", $Associative["subjectID"][$i]);
-				$statement->execute();
-				$statement->store_result();
-				$statement->bind_result($subjectName, $level);
-				
-				while($statement->fetch())
-				{
-					$Associative["subjectName"][$i] = $subjectName;
-					$Associative["level"][$i] = $level;
-				}
-			    $statement->close();
-			}
-			
-			for($i = 0; $i < count($Associative["subjectID"]); $i++)
-			{
-				echo "<tr>";
-				//Subject Name
-				echo "<td>".$Associative["subjectName"][$i]."</td>";
-				//Level
-				echo "<td>".$Associative["level"][$i]."</td>";
-				//Grade
-				echo "<td>"."<input type='text' id='gradeBox' name='gradeBox' value='".$Associative["subjectGrade"][$i]."'>"."</td>";
-				echo "</tr>";
 			}
 		}
 		$connection->close();
+		return $Associative;
 	}
 ?>

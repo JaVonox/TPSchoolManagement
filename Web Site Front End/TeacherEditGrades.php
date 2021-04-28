@@ -68,6 +68,12 @@
     </style>
 </head>
 <body>
+<script>
+
+
+
+
+</script>
 <div class="header">
 
     <h1>Edit Grades</h1>
@@ -81,6 +87,7 @@
     <tr>
         <th class="tableheading">Subject</th>
         <th class="tableheading">Level</th>
+		<th class="tableheading">Number of Exams</th>
         <th class="tableheading">Grade</th>
     </tr>
     </thead>
@@ -89,11 +96,32 @@
         <?php 
 		    if(isset($_POST['submitButton']))
 			{
-				findStudentSubjectGrades($first_name, $last_name, true, $_POST['gradeBox']);
+				for($i = 1; $i < 16; $i++)
+				{
+					$str = "'" . (string)$i. "'";
+					
+					if(isset($_POST[$i]))
+					{
+						updateSubjectGrades($first_name, $last_name, $i, $_POST[$i]);
+					}
+				}
+				echo "<p>Grades have been updated.</p>";
 			}
-			else
+			
+			$arr = GetGrades($first_name, $last_name);
+			for($i = 0; $i < count($arr["Name"]); $i++)
 			{
-		        findStudentSubjectGrades($first_name, $last_name, false, NULL);
+				echo "<tr>";
+				//Subject Name
+				echo "<td>".$arr["Name"][$i]."</td>";
+				//Level
+				echo "<td>".$arr["Level"][$i]."</td>";
+				//Subject Name
+				echo "<td>".$arr["Exams"][$i]."</td>";
+				//Grade
+				echo "<td>"."<input type='text' id='" . $arr["SubjectID"][$i] . "' name= '" . $arr["SubjectID"][$i] . "' value='".$arr["Grade"][$i]."'>"."</td>";
+				echo "</tr>";
+				
 			}
 			?>
 		<input type="submit" name="submitButton" value="Submit Changes">
