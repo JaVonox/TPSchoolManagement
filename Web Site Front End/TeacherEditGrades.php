@@ -1,3 +1,27 @@
+<?php 
+    require "Scripts/PageAccessVerify.php";
+	require "Scripts/PullUserData.php";
+	require "Scripts/GradesAndAssessmentsService.php";
+	PageCheck(array("Teacher"));
+	
+	$student_name;
+	$first_name;
+	$last_name;
+	$class_id;
+	
+	if(isset($_GET['Name']))
+	{
+		$student_name = $_GET['Name'];
+		$student_name_array = explode(" ", $student_name);
+		$first_name = $student_name_array[0];
+		$last_name = $student_name_array[1];
+	}
+	if(isset($_GET['Class']))
+	{
+		$class_id = $_GET['Class'];
+	}
+	
+?>
 <!DOCTYPE html>
 <html lang="English">
 <head>
@@ -48,75 +72,33 @@
 
     <h1>Edit Grades</h1>
     <a href="TeacherHomePage.php"><img style="float: right;" src=Picture2.png></a>
-	<?php include "PageElements/LoggedInBox.php"?>
+	<?php include "PageElements/LoggedInBox.php"; ?>
 
 </div>
+<h1><?php echo $student_name; ?></h1>
 <table id="table" class="Rows">
     <thead>
-
     <tr>
-        <th class="tableheading">Name</th>
         <th class="tableheading">Subject</th>
         <th class="tableheading">Level</th>
-        <th class="tableheading">Duration</th>
-        <th class="tableheading">Marks</th>
         <th class="tableheading">Grade</th>
-        <th><div class="InputBox">
-                <input id="myInput" onkeyup="SearchFunction()" placeholder="Search for names.." style=" padding: 8px" type = "text">
-                <button class ="button">Search</button>
-            </div>
-        </th>
-
     </tr>
     </thead>
     <tbody>
-    <?php
-    $DataBaseData = 0;
-    //Changing count number (10) changes the amount of rows. So table is dynamic to the number of records in the
-    //database
-    while ($DataBaseData < 10)
-    {
-        $DataBaseData = $DataBaseData + 1;
-        echo "<tr>";
-        //Name
-        echo "<td>".$DataBaseData."</td>";
-        //Subject
-        echo "<td>".$DataBaseData."</td>";
-        //Level
-        echo "<td>".$DataBaseData."</td>";
-        //Duration
-        echo "<td>".$DataBaseData."</td>";
-        //Marks
-        echo "<td>".$DataBaseData."</td>";
-        //Grade *Contenteditable allows editing of the field in the table
-        echo "<td><div contenteditable>".$DataBaseData."</div></td>";
-
-        echo "</tr>";
-    }
-    echo "</tbody>";
-    echo "</table>";
-    ?>
+	    <form action="" method="post">
+        <?php 
+		    if(isset($_POST['submitButton']))
+			{
+				findStudentSubjectGrades($first_name, $last_name, true, $_POST['gradeBox']);
+			}
+			else
+			{
+		        findStudentSubjectGrades($first_name, $last_name, false, NULL);
+			}
+			?>
+		<input type="submit" name="submitButton" value="Submit Changes">
+		</form>
     </tbody>
-    <script>
-        //Searches first column in table
-        function SearchFunction() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("table");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
+	
 </body>
 </html>
